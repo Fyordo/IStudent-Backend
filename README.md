@@ -1,16 +1,15 @@
-# i_student
+# **iStudent**
+- - -
+**iStudent** - web-приложение&nbsp;в связке с мобильным приложением, которое будет объединять БРС, расписание,
+связь между студентами, информацию о студентах (которая есть в общем доступе) в красивый интерфейс как на
+сайте, так и в мобильном приложении.
+- - -
+**<u>Стек технологий:</u>**
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Backend**:  
+  Язык программирования: PHP 8.0  
+  Фреймворк: Laravel 8.64.0
+- <b>Frontend:</b>  
+  Мобильное приложение: Flutter  
+  Сайт: PHP+Laravel
+- <b>Хостинг</b>: Heroku  
