@@ -1,0 +1,120 @@
+@font-face {
+    font-family: Daray; /* Имя шрифта */
+    src: url(https://www.behance.net/m-raikov0e88); /* Путь к файлу со шрифтом */
+}
+
+* {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.container {
+    max-width: 1240px;
+}
+
+.student {
+    padding: 5px; /* Поля вокруг текста */
+    float: left; /* Обтекание по правому краю */
+    width: 200px; /* Ширина слоя */
+}
+
+.delete-button {
+    padding: 5px; /* Поля вокруг текста */
+    width: 300px; /* Ширина слоя */
+    float: left; /* Обтекание по правому краю */
+}
+.clear {
+    clear: left; /* Отмена обтекания */
+}
+
+header .nav-item a::after{
+    content: '';
+    display: block;
+    width: 100%;
+    background-color: #ccc;
+    height: 1px;
+    transform: scale(0);
+    transition: all .3s;
+    text-align: center;
+}
+
+header .nav-item a:hover::after{
+    transform: scale(1);
+}
+
+header {
+    position: relative;
+}
+
+header .navbar-brand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 30px;
+}
+
+.container .row .col-sm{
+    text-align: left;
+}
+
+header .nav-item .dropdown{
+    margin-left: 6px;
+}
+
+.lesson{
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+.group{
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+.group .text-left{
+    margin-left: 10px;
+    padding: 10px 0;
+    text-align: left;
+}
+
+.GreyBox{
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+.GreyBox .text-left{
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px 0;
+    font-size: 30px;
+    text-align: left;
+}
+
+.GreyBox-2{
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+.GreyBox-2 .text-center{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 0;
+}
+
+.GreyBox-2 .text-center b{
+    color: red;
+}
+
+.GreyBox-3{
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+.GreyBox-3 .text-left{
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px 0;
+    font-size: 20px;
+    text-align: left;
+}
