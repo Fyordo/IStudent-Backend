@@ -4,7 +4,17 @@
 }
 
 * {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-primary{
+    color: #fff;
+    background-color: #9370d8;
+    border-color: #9370d8;
+}
+
+a{
+    color: #9370d8;
 }
 
 .container {
@@ -62,37 +72,53 @@ header .nav-item .dropdown{
 }
 
 .lesson{
-    background-color: #e0e0e0;
-    border-radius: 10px;
+    background-color: #FFFFFF;
+    border-radius: 35px;
+    -webkit-box-shadow: 1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+    -moz-box-shadow:    1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+    box-shadow:         1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+}
+
+ol, ul {
+    padding-left: 3rem;
 }
 
 .group{
-    background-color: #e0e0e0;
-    border-radius: 10px;
+    background-color: #FFFFFF;
+    border-radius: 35px;
+    -webkit-box-shadow: 1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+    -moz-box-shadow:    1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+    box-shadow:         1px 1px 20px 0px rgba(50, 50, 50, 0.62);
 }
 
 .group .text-left{
     margin-left: 10px;
-    padding: 10px 0;
     text-align: left;
+    padding: 10px 0 10px 3rem;
 }
 
 .GreyBox{
-    background-color: #e0e0e0;
-    border-radius: 10px;
+    background-color: #FFFFFF;
+    border-radius: 35px;
+    -webkit-box-shadow: 1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+    -moz-box-shadow:    1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+    box-shadow:         1px 1px 20px 0px rgba(50, 50, 50, 0.62);
 }
 
 .GreyBox .text-left{
     margin-left: 20px;
     margin-right: 20px;
-    padding: 10px 0;
     font-size: 30px;
     text-align: left;
+    padding: 1rem 2rem;
 }
 
 .GreyBox-2{
-    background-color: #e0e0e0;
-    border-radius: 10px;
+    background-color: #FFFFFF;
+    border-radius: 35px;
+    -webkit-box-shadow: 1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+    -moz-box-shadow:    1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+    box-shadow:         1px 1px 20px 0px rgba(50, 50, 50, 0.62);
 }
 
 .GreyBox-2 .text-center{
@@ -100,21 +126,49 @@ header .nav-item .dropdown{
     margin-left: 10px;
     margin-right: 10px;
     padding: 10px 0;
-}
-
-.GreyBox-2 .text-center b{
-    color: red;
+    font-size: 15px;
 }
 
 .GreyBox-3{
-    background-color: #e0e0e0;
-    border-radius: 10px;
+    background-color: #FFFFFF;
+    border-radius: 35px;
+    -webkit-box-shadow: 1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+    -moz-box-shadow:    1px 1px 20px 0px rgba(50, 50, 50, 0.62);
+    box-shadow:         1px 1px 20px 0px rgba(50, 50, 50, 0.62);
 }
 
-.GreyBox-3 .text-left{
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 10px 0;
+.GreyBox-3 .text-left {
+    padding: 1rem 2rem;
     font-size: 20px;
     text-align: left;
+}
+
+footer {
+    margin-top: -10px;
+    /*Минус Высота футера*/
+    height: 10px;
+    /*Высота футера*/
+}
+
+.floating-button {
+    text-decoration: none;
+    display: inline-block;
+    width: 300px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 35px;
+    margin: 10px;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #524f4e;
+    background: #e3e3e3;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+}
+.floating-button:hover {
+    background: #9370d8;
+    box-shadow: 0 15px 20px #9370d8;
+    color: white;
+    transform: translateY(-7px);
 }

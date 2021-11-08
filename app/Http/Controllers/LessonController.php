@@ -27,6 +27,8 @@ class LessonController extends Controller
             array_push($lessons, new LessonClass($lesson));
         }
 
+        $groupNum = (new GroupClass(Group::where('id', $groupId)->first()))->printGroup();
+
         return view("lesson.list", [
             'lessons' => $lessons,
             'groupId' => $groupId,
@@ -34,6 +36,7 @@ class LessonController extends Controller
             'today' => $today,
             'tomorrow' => $tomorrow,
             'weekDay' => $this->getNameOfDay($weekDay),
+            'groupNum' => $groupNum,
             'upWeek' => (int)date('W', $today) % 2 != 0
         ])->with([
             'student' => StudentClass::getStudent(Auth::user())

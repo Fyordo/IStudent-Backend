@@ -31,9 +31,9 @@ use App\Models\Classes\GroupClass;
                     <ol>
                         @foreach ($group->getStudents() as $st)
                             @if ($st->email == $student->email)
-                                <div class="col-xs-4"><a href=" {{ route("page", ["id" => $st->id]) }} "><b><li align="left">{{ $st->name }}</li></b></a></div>
+                                <div class="col-xs-4"><a href=" {{ route("page", ["id" => $st->id]) }} " class="floating-button" style="font-size: 15px; width: 400px;">{{ $st->name }}</a></div>
                             @else
-                                <div class="col-xs-4"><a href=" {{ route("page", ["id" => $st->id]) }} "><li align="left">{{ $st->name }}</li></a></div>
+                                <div class="col-xs-4"><a href=" {{ route("page", ["id" => $st->id]) }} " class="floating-button" style="font-size: 15px; width: 400px;">{{ $st->name }}</a></div>
                             @endif
                         @endforeach
 
@@ -52,13 +52,13 @@ use App\Models\Classes\GroupClass;
                             <p>
                                 <b>Староста:</b>
                                 @if ($headman != null)
-                                    <a href=" {{ route("page", ["id" => $group->headmanId]) }} ">{{ $headman->name }}</a>
+                                    <a href=" {{ route("page", ["id" => $group->headmanId]) }}" class="floating-button" style="font-size: 15px; width: 400px;">{{ $headman->name }}</a>
                                 @else
                                     <a>Староста не назначен</a>
                                 @endif
                             </p>
                             <p><b>Кол-во студентов:</b> {{ $group->countStudents() }}</p>
-                            <a href="{{route("fullSchedule", ['groupId' => $group->id])}}">
+                            <a href="{{route("fullSchedule", ['groupId' => $group->id])}}" class="floating-button">
                                 Расписание группы
                             </a>
                         </div>
@@ -67,4 +67,6 @@ use App\Models\Classes\GroupClass;
 
     </div>
 </div>
+<br>
+<br>
 @stop

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href=" {{ asset("public/css/app.css") }} "/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,80" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -85,6 +85,7 @@
                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?= $student->name ?>
                                 </button>
+
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="{{ route("page", ['id' => $student->id]) }}">Моя страница</a>
                                     <a class="dropdown-item" href="https://grade.sfedu.ru/#" target="_blank">Мои оценки</a>
@@ -110,7 +111,7 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2021 - IStudent - <a href="{{ route("about") }}">О нас</a> | <a href="{{ route("privacy") }}">Политика конфиденциальности</a>
+        &copy; 2021 - iStudent (0.1) - <a href="{{ route("about") }}">О нас</a> | <a href="{{ route("privacy") }}">Политика конфиденциальности</a>
     </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

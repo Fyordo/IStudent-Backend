@@ -11,6 +11,7 @@ use App\Models\Classes\StudentClass;
 @section('content')
 <div class="text-center">
     <br>
+    <img src="favicon.ico" width="200" height="200">
     <h1 class="display-4">iStudent</h1>
     <h3>Интерфейс студента</h3>
     <br>

@@ -17,22 +17,26 @@ use App\Models\Classes\StudentClass;
 <br>
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm">
-            <a href="{{ route("lessonList", ['groupId' => $groupId, 'day' => date('d', $yesterday), 'month' => date('m', $yesterday), 'year' => date('Y', $yesterday)]) }}">
-                Предыдущий день
-            </a>
-        </div>
+    <div class="text-center">
+        <div class="row">
+            <div class="col-sm">
+                <a href="{{ route("lessonList", ['groupId' => $groupId, 'day' => date('d', $yesterday), 'month' => date('m', $yesterday), 'year' => date('Y', $yesterday)]) }}" class="floating-button">
+                    Предыдущий день
+                </a>
+            </div>
 
-        <div class="col-sm">
-            <h1 class="display-5">{{ "Расписание " . $student->printGroup() }}</h1>
-        </div>
+            <div class="col-sm">
 
-        <div class="col-sm" style="text-align: right">
-            <a href="{{ route("lessonList", ['groupId' => $groupId, 'day' => date('d', $tomorrow), 'month' => date('m', $tomorrow), 'year' => date('Y', $tomorrow)]) }}">
-                Следующий день
-            </a>
+            </div>
+
+            <div class="col-sm" style="text-align: right">
+                <a href="{{ route("lessonList", ['groupId' => $groupId, 'day' => date('d', $tomorrow), 'month' => date('m', $tomorrow), 'year' => date('Y', $tomorrow)]) }}" class="floating-button">
+                    Следующий день
+                </a>
+            </div>
         </div>
+        <br>
+        <h1 class="display-5" style="font-size: 40px">{{ "Расписание " . $groupNum }}</h1>
     </div>
 </div>
 

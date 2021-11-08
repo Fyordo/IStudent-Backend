@@ -34,5 +34,5 @@
     </form>
     <br>
     <br>
-    <a href=" {{ route('signin') }}">Регистрация через Microsoft</a>
+    <a href=" {{ route('signin') }}" class="floating-button" style="width: 400px">Регистрация через Microsoft</a>
 @stop

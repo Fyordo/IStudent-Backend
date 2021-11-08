@@ -29,11 +29,11 @@ $count = 0;
 
                 <div class="GreyBox-2">
                     <div class="text-center">
-                        <a href="{{ route("group", ['id' => $groups[$i]->id]) }}" style="color: blue">
+                        <a href="{{ route("group", ['id' => $groups[$i]->id]) }}" class="floating-button" style="font-size: 15px;">
                             <b>Группа {{$groups[$i]->printGroup()}}</b>
                         </a>
                         <p>Кол-во студентов: {{$groups[$i]->countStudents()}}</p>
-                        <p>Направление: {{$groups[$i]->direction->title}}</p>
+                        <p>{{$groups[$i]->direction->title}}</p>
                     </div>
                 </div>
                 @if ($count++ == 6)
@@ -48,11 +48,11 @@ $count = 0;
             @for ($i = 1; $i < count($groups); $i += 2)
                 <div class="GreyBox-2">
                     <div class="text-center">
-                        <a href="{{ route("group", ['id' => $groups[$i]->id]) }}" style="color: blue">
+                        <a href="{{ route("group", ['id' => $groups[$i]->id]) }}" class="floating-button" style="font-size: 15px;">
                             <b>Группа {{$groups[$i]->printGroup()}}</b>
                         </a>
                         <p>Кол-во студентов: {{$groups[$i]->countStudents()}}</p>
-                        <p>Направление: {{$groups[$i]->direction->title}}</p>
+                        <p>{{$groups[$i]->direction->title}}</p>
                     </div>
                 </div>
                 @if ($count++ == 6)
