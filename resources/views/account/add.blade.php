@@ -14,6 +14,7 @@ use App\Models\Classes\GroupClass;
     <div class="text-center">
         <h1 class="display-4">Заполнение обязательных данных</h1>
         <p>Ток по честному пиши плез</p>
+        <h4 style="color: red">{{ ($message) }}</h4>
     </div>
     <br>
     <br>

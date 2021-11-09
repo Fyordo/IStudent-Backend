@@ -25,7 +25,7 @@ class AccountController extends Controller
 
             $studentFind = Student::where('email', $request->input('email'))->first();
 
-            if ($studentFind && $studentFind["password"] == $request->input('password')){
+            if ($studentFind && $studentFind["password"] == $request->input('password')) {
                 Auth::login($studentFind, true);
                 return redirect(route('home'));
             }
@@ -51,13 +51,24 @@ class AccountController extends Controller
     /**
      * Подтверждение страницы студента
      */
-    public function add(Request $request)
+    public function add(Request $request, $message = "")
     {
         if ($request->isMethod('post')) {
             $validateFileds = $request->validate([
                 'groupId' => 'required',
                 'password' => 'required|confirmed',
             ]);
+
+            // Проверка, есть ли у группы староста
+            $group = Group::where('id', (integer)$request->input('groupId'))->first();
+            if ($group['headmanId'] != null && !($request->input('isHeadman') == null)) {
+                return redirect(route(
+                    "loginAdd",
+                    [
+                        'message' => "У этой группы уже есть староста"
+                    ]
+                ));
+            }
 
             Student::where('id', Auth::id())->update([
                 'groupId' => (integer)$request->input('groupId'),
@@ -67,8 +78,7 @@ class AccountController extends Controller
 
             $studentFind = Student::where('email', Auth::user()["email"])->first();
 
-            if (!($request->input('isHeadman') == null))
-            {
+            if (!($request->input('isHeadman') == null)) {
                 Group::where("id", (integer)$request->input('groupId'))
                     ->update([
                         'headmanId' => Auth::id()
@@ -79,20 +89,20 @@ class AccountController extends Controller
             Auth::login($studentFind, true);
 
 
-
             return redirect(route("home"));
         }
 
         $groupsDB = Group::orderBy("groupCourse")->orderBy('groupNumber')->get(); // Данные из БД
         $groups = []; // Массив нормальных классов
 
-        foreach ($groupsDB as $group){
+        foreach ($groupsDB as $group) {
             array_push($groups, new GroupClass($group));
         }
 
         return view("account.add", [
             'student' => StudentClass::getStudent(Auth::user()),
-            'groups' => $groups
+            'groups' => $groups,
+            'message' => $message
         ]);
     }
 
@@ -122,7 +132,7 @@ class AccountController extends Controller
             'state' => $_SESSION["state"]
         ];
 
-        $url = "https://login.microsoftonline.com/" . $tenant . "/oauth2/v2.0/authorize?". http_build_query($parameters);
+        $url = "https://login.microsoftonline.com/" . $tenant . "/oauth2/v2.0/authorize?" . http_build_query($parameters);
 
         return redirect($url);
     }
@@ -147,19 +157,19 @@ class AccountController extends Controller
 
         $options = array(
             'http' => array(
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
                 'content' => http_build_query($data)
             )
         );
-        $context  = stream_context_create($options);
+        $context = stream_context_create($options);
         $result = json_decode(file_get_contents($url, false, $context));
 
         // Create a stream
         $opts = array(
-            'http'=>array(
-                'method'=>"GET",
-                'header'=>"Authorization: Bearer " . $result->access_token
+            'http' => array(
+                'method' => "GET",
+                'header' => "Authorization: Bearer " . $result->access_token
             )
         );
 
@@ -171,16 +181,16 @@ class AccountController extends Controller
 
         // Проверка, что почта sfedu-шная
 
-        $match = substr($file->userPrincipalName, strlen($file->userPrincipalName)-8, 8) === "sfedu.ru"
-        && $file->userPrincipalName[strlen($file->userPrincipalName)-9] === '@';
+        $match = substr($file->userPrincipalName, strlen($file->userPrincipalName) - 8, 8) === "sfedu.ru"
+            && $file->userPrincipalName[strlen($file->userPrincipalName) - 9] === '@';
 
-        if (!$match){
+        if (!$match) {
             return redirect(route("login", [
                 'message' => "Войти можно только через @sfedu.ru"
             ]));
         }
 
-        if ($isEmpty){
+        if ($isEmpty) {
             DB::table('students')->insert([
                 [
                     'name' => $file->displayName,
@@ -190,8 +200,7 @@ class AccountController extends Controller
                     'isHeadman' => false
                 ]
             ]);
-        }
-        else{
+        } else {
             return redirect(route("login", [
                 'message' => "Такой пользователь уже есть"
             ]));
