@@ -25,7 +25,7 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::match(['get', 'post'], '/data/add', [AccountController::class, 'add'])->name("loginAdd");
+    Route::match(['get', 'post'], '/data/add/{message?}', [AccountController::class, 'add'])->name("loginAdd");
 
     Route::get('/logout', [AccountController::class, 'logout'])->name("logout");
 });
