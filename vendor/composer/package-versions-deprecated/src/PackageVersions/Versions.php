@@ -56,6 +56,7 @@ final class Versions
   'league/commonmark' => '1.6.6@c4228d11e30d7493c6836d20872f9582d8ba6dcf',
   'league/flysystem' => '1.1.5@18634df356bfd4119fe3d6156bdb990c414c14ea',
   'league/mime-type-detection' => '1.8.0@b38b25d7b372e9fddb00335400467b223349fd7e',
+  'microsoft/microsoft-graph' => '1.44.0@94518be70f07e9a7b574ae014ff6d8c0370d0f1c',
   'monolog/monolog' => '2.3.5@fd4380d6fc37626e2f799f29d91195040137eba9',
   'nesbot/carbon' => '2.54.0@eed83939f1aed3eee517d03a33f5ec587ac529b5',
   'nikic/php-parser' => 'v4.13.1@63a79e8daa781cac14e5195e63ed8ae231dd10fd',
@@ -145,7 +146,7 @@ final class Versions
   'sebastian/type' => '2.3.4@b8cd8a1c753c90bc1a0f5372170e3e489136f914',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-  'laravel/laravel' => 'dev-master@8ec265256535a37fa3b535b8602dcf085db1c9e4',
+  'laravel/laravel' => 'dev-master@891ac2f432f54514fc959aa63e228c8b2fef8edd',
 );
 
     private function __construct()

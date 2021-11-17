@@ -36,6 +36,16 @@ use App\Models\Classes\StudentClass;
         <div class="col-sm">
             <div class="GreyBox">
                 <div class="text-left">
+                    @if (isset($ownerStudent->photo))
+                        <div class="text-center">
+                            <img src="data:image/jpeg;base64,{{$ownerStudent->photo}}" class="rounded-circle shadow"/>
+                        </div>
+                    @else
+                        <div class="text-center">
+                            <h1 style="color: red;">Фото не установлено</h1>
+                        </div>
+                    @endif
+                    <br>
                     <a href="{{ route("group", ['id'=>$ownerStudent->groupId]) }}" class="floating-button"><b>Группа:</b> {{$ownerStudent->printGroup()}}</a><br><br>
                     <b>Email: </b><a href="mailto:{{ $ownerStudent->email }}" class="floating-button" style="font-size: 20px;">{{ $ownerStudent->email }}</a><br>
                     @if ($ownerStudent->isHeadman)

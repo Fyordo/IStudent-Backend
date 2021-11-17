@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8ec265256535a37fa3b535b8602dcf085db1c9e4',
+    'reference' => '891ac2f432f54514fc959aa63e228c8b2fef8edd',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -496,7 +496,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8ec265256535a37fa3b535b8602dcf085db1c9e4',
+      'reference' => '891ac2f432f54514fc959aa63e228c8b2fef8edd',
     ),
     'laravel/sail' => 
     array (
@@ -560,6 +560,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'b38b25d7b372e9fddb00335400467b223349fd7e',
+    ),
+    'microsoft/microsoft-graph' => 
+    array (
+      'pretty_version' => '1.44.0',
+      'version' => '1.44.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '94518be70f07e9a7b574ae014ff6d8c0370d0f1c',
     ),
     'mockery/mockery' => 
     array (
@@ -852,8 +861,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0|2.0',
-        1 => '1.0.0 || 2.0.0 || 3.0.0',
+        0 => '1.0.0 || 2.0.0 || 3.0.0',
+        1 => '1.0|2.0',
       ),
     ),
     'psr/simple-cache' => 

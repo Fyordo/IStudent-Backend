@@ -22,6 +22,7 @@ class StudentClass
         $this->token = $arr["token"] ?? "";
         $this->groupId = $arr["groupId"];
         $this->isHeadman = $arr["isHeadman"];
+        $this->photo = $arr["photo"];
         $this->notifications = [];
 
         $notesDB = Notification::where("studentId", $this->id)->orderBy('date')->get();

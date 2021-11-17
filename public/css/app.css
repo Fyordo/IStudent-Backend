@@ -163,3 +163,9 @@ footer {
     transform: translateY(-7px);
 }
 
+.btn-primary.active, .btn-primary:active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #9966CC;
+    border-color: #9966CC;
+}
+
