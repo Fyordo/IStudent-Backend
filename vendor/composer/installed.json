@@ -2514,6 +2514,60 @@
             "install-path": "../league/mime-type-detection"
         },
         {
+            "name": "microsoft/microsoft-graph",
+            "version": "1.44.0",
+            "version_normalized": "1.44.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/microsoftgraph/msgraph-sdk-php.git",
+                "reference": "94518be70f07e9a7b574ae014ff6d8c0370d0f1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/94518be70f07e9a7b574ae014ff6d8c0370d0f1c",
+                "reference": "94518be70f07e9a7b574ae014ff6d8c0370d0f1c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.0 || ^7.0",
+                "php": "^8.0 || ^7.3",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.2",
+                "phpstan/phpstan": "^0.12.90 || ^1.0.0",
+                "phpunit/phpunit": "^8.0 || ^9.0"
+            },
+            "time": "2021-11-12T09:30:55+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Beta\\Microsoft\\Graph\\": "src/Beta/Microsoft/Graph/",
+                    "Microsoft\\Graph\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Microsoft Graph Client Tooling",
+                    "email": "graphtooling@service.microsoft.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Microsoft Graph SDK for PHP",
+            "homepage": "https://developer.microsoft.com/en-us/graph",
+            "support": {
+                "issues": "https://github.com/microsoftgraph/msgraph-sdk-php/issues",
+                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.44.0"
+            },
+            "install-path": "../microsoft/microsoft-graph"
+        },
+        {
             "name": "mockery/mockery",
             "version": "1.4.4",
             "version_normalized": "1.4.4.0",

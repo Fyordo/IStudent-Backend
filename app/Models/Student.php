@@ -26,6 +26,7 @@ class Student extends Authenticatable
     public string $token;
     public int $groupId;
     public bool $isHeadman;
+    public string $photo;
 
     /**
      * The attributes that are mass assignable.
@@ -38,7 +39,8 @@ class Student extends Authenticatable
         'password',
         'groupId',
         'token',
-        'isHeadman'
+        'isHeadman',
+        'photo'
     ];
 
     /**

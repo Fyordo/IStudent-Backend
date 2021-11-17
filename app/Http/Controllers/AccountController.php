@@ -9,6 +9,8 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Microsoft\Graph\Graph;
+use Microsoft\Graph\Model;
 
 class AccountController extends Controller
 {
@@ -164,25 +166,28 @@ class AccountController extends Controller
         );
         $context = stream_context_create($options);
         $result = json_decode(file_get_contents($url, false, $context));
+        $access_token = $result->access_token;
 
-        // Create a stream
-        $opts = array(
-            'http' => array(
-                'method' => "GET",
-                'header' => "Authorization: Bearer " . $result->access_token
-            )
-        );
+        // Подключаем GraphMicrosoft API
 
-        $context = stream_context_create($opts);
+        $graph = new Graph();
+        $graph->setAccessToken($access_token);
+        $user = $graph->createRequest("GET", "/me")
+            ->setReturnType(Model\User::class)
+            ->execute();
 
-        $file = json_decode(file_get_contents('https://graph.microsoft.com/v1.0/me', false, $context));
+        $email = $user->getUserPrincipalName();
+        $fio = $user->getDisplayName();
 
-        $isEmpty = Student::where('email', $file->userPrincipalName)->get()->isEmpty(); // Существует ли уже такой студент
+        $photo = $graph->createRequest("GET", "/me/photo/\$value")->execute();
+        $photo = base64_encode($photo->getRawBody());
+
+        $isEmpty = Student::where('email', $email)->get()->isEmpty(); // Существует ли уже такой студент
 
         // Проверка, что почта sfedu-шная
 
-        $match = substr($file->userPrincipalName, strlen($file->userPrincipalName) - 8, 8) === "sfedu.ru"
-            && $file->userPrincipalName[strlen($file->userPrincipalName) - 9] === '@';
+        $match = substr($email, strlen($email) - 8, 8) === "sfedu.ru"
+            && $email[strlen($email) - 9] === '@';
 
         if (!$match) {
             return redirect(route("login", [
@@ -193,11 +198,12 @@ class AccountController extends Controller
         if ($isEmpty) {
             DB::table('students')->insert([
                 [
-                    'name' => $file->displayName,
-                    'email' => $file->userPrincipalName,
-                    'password' => $file->userPrincipalName,
+                    'name' => $fio,
+                    'email' => $email,
+                    'password' => $email,
                     'groupId' => 0,
-                    'isHeadman' => false
+                    'isHeadman' => false,
+                    'photo' => $photo
                 ]
             ]);
         } else {
@@ -206,7 +212,7 @@ class AccountController extends Controller
             ]));
         }
 
-        $studentFind = Student::where('email', $file->userPrincipalName)->first();
+        $studentFind = Student::where('email', $email)->first();
 
         Auth::login($studentFind, true);
         return redirect(route('loginAdd'));
