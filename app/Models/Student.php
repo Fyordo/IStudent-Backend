@@ -50,6 +50,7 @@ class Student extends Authenticatable
      */
     protected $hidden = [
         'id',
+        'token',
         'password'
     ];
 

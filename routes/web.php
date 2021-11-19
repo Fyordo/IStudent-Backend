@@ -110,5 +110,25 @@ Route::group(
             }
         );
 
+        // АДМИН ПАНЕЛЬ
+
+        Route::group(
+            [
+                'prefix' => '/admin'
+            ],
+            function () {
+
+                Route::group(
+                    [
+                        'prefix' => '/teacher'
+                    ],
+                    function () {
+                        Route::get('/add', [\App\Http\Controllers\Api\Admin\AdminApiController::class, 'addTeachers']);
+                    }
+                );
+
+            }
+        );
+
     }
 );
