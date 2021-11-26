@@ -4,12 +4,76 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classes\StudentClass;
+use App\Models\Group;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthApiController extends Controller
 {
+    public function add(Request $request){
+        if ($request->isMethod('post')) {
+            $token = $request->header("token");
+            if ($token == "")
+            {
+                $array = [
+                    'error' => 'Ошибка доступа'
+                ];
+                return response()->json($array);
+            }
+            $access = Student::where("token", $token)->first();
+
+            $studentID = $request->input('studentID');
+            if ($studentID != $access['id']){
+                $array = [
+                    'error' => 'Ошибка доступа'
+                ];
+                return response()->json($array);
+            }
+
+            $groupID = $request->input('groupID');
+            $password = $request->input('password');
+            $isHeadman = $request->input('isHeadman');
+            $group = Group::where("id", $groupID)->first();
+            if (isset($group)) {
+                if (!(isset($group['headmanId']) && $isHeadman)) {
+                    Student::where('id', $studentID)->update([
+                        'groupId' => (int)$groupID,
+                        'password' => $password,
+                        'isHeadman' => (bool)$isHeadman
+                    ]);
+                    if ($isHeadman){
+                        Group::where('id', $groupID)->update([
+                            'headmanId' => (int)$studentID
+                        ]);
+                    }
+                    $array = [
+                        'status' => 200,
+                        'message' => 'Данные о студенте успешно обновлены'
+                    ];
+                    return response()->json($array);
+                }
+                else {
+                    $array = [
+                        'error' => 'Ошибка, у группы уже есть староста'
+                    ];
+                    return response()->json($array);
+                }
+            }
+            else{
+                $array = [
+                    'error' => 'Ошибка, такой группы не существует'
+                ];
+                return response()->json($array);
+            }
+        }
+        else{
+            $array = [
+                'error' => 'Ошибка, поддерживается только POST-метод'
+            ];
+            return response()->json($array);
+        }
+    }
     public function login(Request $request)
     {
         if ($request->hasHeader("login") && $request->hasHeader("password"))

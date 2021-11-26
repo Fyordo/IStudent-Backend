@@ -77,6 +77,7 @@ Route::group(
             ],
             function () {
                 Route::get('/login', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'login']);
+                Route::post('/add', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'add']);
             }
         );
 
