@@ -8,7 +8,7 @@ use App\Models\Group;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
-class ApiController extends Controller
+class GroupApiController extends Controller
 {
     public function get(Request $request, int $id)
     {

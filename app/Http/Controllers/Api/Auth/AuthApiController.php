@@ -8,7 +8,7 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ApiController extends Controller
+class AuthApiController extends Controller
 {
     public function login(Request $request)
     {

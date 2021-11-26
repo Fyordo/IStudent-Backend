@@ -76,7 +76,7 @@ Route::group(
                 'prefix' => '/auth'
             ],
             function () {
-                Route::get('/login', [\App\Http\Controllers\Api\Auth\ApiController::class, 'login']);
+                Route::get('/login', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'login']);
             }
         );
 
@@ -85,7 +85,7 @@ Route::group(
                 'prefix' => '/student'
             ],
             function () {
-                Route::get('/get/{id}', [\App\Http\Controllers\Api\Student\ApiController::class, 'get']);
+                Route::get('/get/{id}', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'get']);
             }
         );
 
@@ -94,9 +94,9 @@ Route::group(
                 'prefix' => '/group'
             ],
             function () {
-                Route::get('/get/{id}', [\App\Http\Controllers\Api\Group\ApiController::class, 'get']);
-                Route::get('/students/{id}', [\App\Http\Controllers\Api\Group\ApiController::class, 'getStudents']);
-                Route::get('/all', [\App\Http\Controllers\Api\Group\ApiController::class, 'all']);
+                Route::get('/get/{id}', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'get']);
+                Route::get('/students/{id}', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'getStudents']);
+                Route::get('/all', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'all']);
             }
         );
 
@@ -105,8 +105,8 @@ Route::group(
                 'prefix' => '/schedule'
             ],
             function () {
-                Route::get('/list/{group_id}/{day}/{month}/{year}', [\App\Http\Controllers\Api\Schedule\ApiController::class, 'day']);
-                Route::get('/full/{group_id}', [\App\Http\Controllers\Api\Schedule\ApiController::class, 'full']);
+                Route::get('/list/{group_id}/{day}/{month}/{year}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'day']);
+                Route::get('/full/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'full']);
             }
         );
 

@@ -10,7 +10,7 @@ use App\Models\Lesson;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
-class ApiController extends Controller
+class ScheduleApiController extends Controller
 {
     public function day(Request $request, $group_id, $day, $month, $year)
     {

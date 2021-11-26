@@ -7,7 +7,7 @@ use App\Models\Classes\StudentClass;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
-class ApiController extends Controller
+class StudentApiController extends Controller
 {
     public function get(Request $request, int $id)
     {
