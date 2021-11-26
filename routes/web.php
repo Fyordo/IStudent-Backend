@@ -127,6 +127,24 @@ Route::group(
                     }
                 );
 
+                Route::group(
+                    [
+                        'prefix' => '/group'
+                    ],
+                    function () {
+                        Route::get('/add', [\App\Http\Controllers\Api\Admin\AdminApiController::class, 'addGroups']);
+                    }
+                );
+
+                Route::group(
+                    [
+                        'prefix' => '/schedule'
+                    ],
+                    function () {
+                        Route::get('/add', [\App\Http\Controllers\Api\Admin\AdminApiController::class, 'addSchedule']);
+                    }
+                );
+
             }
         );
 
