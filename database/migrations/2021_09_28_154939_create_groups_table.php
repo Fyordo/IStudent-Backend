@@ -18,11 +18,13 @@ class CreateGroupsTable extends Migration
             $table->integer("groupNumber");
             $table->integer("groupCourse");
             $table->integer("headmanId");
-            $table->string("directionCode");
+            $table->bigInteger("directionId");
 
             $table->foreign("headmanId")->references("id")->on("students")->onDelete("cascade");
-
+            $table->foreign("directionId")->references("id")->on("directions")->onDelete("cascade");
         });
+
+
     }
 
     /**

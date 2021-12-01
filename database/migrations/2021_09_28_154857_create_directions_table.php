@@ -17,8 +17,6 @@ class CreateDirectionsTable extends Migration
             $table->id();
             $table->string("code");
             $table->string("title");
-
-            $table->foreign("code")->references("directionCode")->on("groups")->onDelete("cascade");
         });
     }
 
