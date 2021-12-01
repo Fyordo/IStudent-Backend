@@ -22,7 +22,7 @@ class AuthApiController extends Controller
                 $array = [
                     'error' => 'Ошибка доступа'
                 ];
-                return response()->json($array);
+                return response()->json($array, 405);
             }
 
 
@@ -30,7 +30,7 @@ class AuthApiController extends Controller
                 $array = [
                     'error' => 'Ошибка доступа, не найден токен'
                 ];
-                return response()->json($array);
+                return response()->json($array,405);
             }
 
 
@@ -40,7 +40,7 @@ class AuthApiController extends Controller
                 $array = [
                     'error' => 'Ошибка доступа'
                 ];
-                return response()->json($array);
+                return response()->json($array,405);
             }
 
             $groupID = $request->input('groupID');
@@ -60,7 +60,6 @@ class AuthApiController extends Controller
                         ]);
                     }
                     $array = [
-                        'status' => 200,
                         'message' => 'Данные о студенте успешно обновлены'
                     ];
                     return response()->json($array);
@@ -69,21 +68,21 @@ class AuthApiController extends Controller
                     $array = [
                         'error' => 'Ошибка, у группы уже есть староста'
                     ];
-                    return response()->json($array);
+                    return response()->json($array, 405);
                 }
             }
             else {
                 $array = [
                     'error' => 'Ошибка, такой группы не существует'
                 ];
-                return response()->json($array);
+                return response()->json($array, 405);
             }
         }
         else {
             $array = [
                 'error' => 'Ошибка, поддерживается только POST-метод'
             ];
-            return response()->json($array);
+            return response()->json($array, 405);
         }
     }
      /**
@@ -102,7 +101,7 @@ class AuthApiController extends Controller
                 $array = [
                     'error' => 'Ошибка, такого студента нет'
                 ];
-                return response()->json($array);
+                return response()->json($array,405);
             }
 
             if ($student["password"] == $password)
@@ -118,7 +117,7 @@ class AuthApiController extends Controller
                 $array = [
                     'error' => 'Ошибка, неверный логин и пароль'
                 ];
-                return response()->json($array);
+                return response()->json($array, 401);
             }
         }
         else
@@ -126,7 +125,7 @@ class AuthApiController extends Controller
             $array = [
                 'error' => 'Ошибка, не введены данные'
             ];
-            return response()->json($array);
+            return response()->json($array, 405);
         }
     }
     /**
@@ -140,13 +139,12 @@ class AuthApiController extends Controller
                 $array = [
                     'error' => 'Ошибка доступа'
                 ];
-                return response()->json($array);
+                return response()->json($array, 405);
             }
             Student::where("token", $token)->update([
                 'token' => ''
             ]);
             $array = [
-                'status' => 200,
                 'message' => 'Токен был удален'
             ];
             return response()->json($array);
@@ -155,7 +153,7 @@ class AuthApiController extends Controller
             $array = [
                 'error' => 'Ошибка, поддерживается только POST-метод'
             ];
-            return response()->json($array);
+            return response()->json($array, 405);
         }
     }
 
