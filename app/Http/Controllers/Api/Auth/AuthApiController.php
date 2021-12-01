@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthApiController extends Controller
 {
     /**
-     * Добавление студента
+     * Добавление информации
      */
     public function add(Request $request){
         if ($request->isMethod('post')) {
@@ -23,8 +23,18 @@ class AuthApiController extends Controller
                     'error' => 'Ошибка доступа'
                 ];
                 return response()->json($array);
-            }            $access = Student::where("token", $token)->first();
+            }
 
+
+            if (!(Student::where("token", $token)->exists())){
+                $array = [
+                    'error' => 'Ошибка доступа, не найден токен'
+                ];
+                return response()->json($array);
+            }
+
+
+            $access = Student::where("token", $token)->first();
             $studentID = $request->input('studentID');
             if ($studentID != $access['id']){
                 $array = [
@@ -119,7 +129,6 @@ class AuthApiController extends Controller
             return response()->json($array);
         }
     }
-
     /**
      * Деавторизация - удаление токена
      */
