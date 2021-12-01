@@ -31,11 +31,11 @@ class HomeController extends Controller
     }
 
     /**
-     * Политика конфиденциальности
+     * Об iStudent
      */
-    public function privacy()
+    public function info()
     {
-        return view("home.privacy")->with([
+        return view("home.info")->with([
             'student' => StudentClass::getStudent(Auth::user())
         ]);
     }

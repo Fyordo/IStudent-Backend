@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthApiController extends Controller
 {
+    /**
+     * Добавление информации
+     */
     public function add(Request $request){
         if ($request->isMethod('post')) {
             $token = $request->header("token");
@@ -21,8 +24,17 @@ class AuthApiController extends Controller
                 ];
                 return response()->json($array);
             }
-            $access = Student::where("token", $token)->first();
 
+
+            if (!(Student::where("token", $token)->exists())){
+                $array = [
+                    'error' => 'Ошибка доступа, не найден токен'
+                ];
+                return response()->json($array);
+            }
+
+
+            $access = Student::where("token", $token)->first();
             $studentID = $request->input('studentID');
             if ($studentID != $access['id']){
                 $array = [
@@ -60,20 +72,23 @@ class AuthApiController extends Controller
                     return response()->json($array);
                 }
             }
-            else{
+            else {
                 $array = [
                     'error' => 'Ошибка, такой группы не существует'
                 ];
                 return response()->json($array);
             }
         }
-        else{
+        else {
             $array = [
                 'error' => 'Ошибка, поддерживается только POST-метод'
             ];
             return response()->json($array);
         }
     }
+     /**
+     * Авторизация - получение токена
+     */
     public function login(Request $request)
     {
         if ($request->hasHeader("login") && $request->hasHeader("password"))
@@ -114,10 +129,34 @@ class AuthApiController extends Controller
             return response()->json($array);
         }
     }
-
-    public function logout()
+    /**
+     * Деавторизация - удаление токена
+     */
+    public function logout(Request $request)
     {
-
+        if ($request->isMethod('post')) {
+            $token = $request->header("token");
+            if ($token == "") {
+                $array = [
+                    'error' => 'Ошибка доступа'
+                ];
+                return response()->json($array);
+            }
+            Student::where("token", $token)->update([
+                'token' => ''
+            ]);
+            $array = [
+                'status' => 200,
+                'message' => 'Токен был удален'
+            ];
+            return response()->json($array);
+        }
+        else {
+            $array = [
+                'error' => 'Ошибка, поддерживается только POST-метод'
+            ];
+            return response()->json($array);
+        }
     }
 
     private function generateRandomString($length = 10) {

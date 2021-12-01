@@ -111,7 +111,7 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2021 - iStudent (0.1) - <a href="{{ route("about") }}">О нас</a> | <a href="{{ route("privacy") }}">Политика конфиденциальности</a>
+        &copy; 2021 - iStudent (0.5) - <a href="{{ route("about") }}">О нас</a> | <a href="{{ route("info") }}">Об iStudent</a>
     </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

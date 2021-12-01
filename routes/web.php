@@ -11,7 +11,7 @@ Route::get('/', [HomeController::class, 'index'])->name("home");
 
 Route::get('/about', [HomeController::class, 'about'])->name("about");
 
-Route::get('/privacy', [HomeController::class, 'privacy'])->name("privacy");
+Route::get('/info', [HomeController::class, 'info'])->name("info");
 
 Route::middleware(['guest'])->group(function () {
 
@@ -77,6 +77,7 @@ Route::group(
             ],
             function () {
                 Route::get('/login', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'login']);
+                Route::post('/logout', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'logout']);
                 Route::post('/add', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'add']);
             }
         );
