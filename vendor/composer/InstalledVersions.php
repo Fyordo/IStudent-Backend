@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '891ac2f432f54514fc959aa63e228c8b2fef8edd',
+    'reference' => 'df15ca96863b58894ab0e62345538cda03910dcb',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -219,6 +219,169 @@ private static $installed = array (
       array (
       ),
       'reference' => '296c015dc30ec4322168c5ad3ee5cc11dae827ac',
+    ),
+    'guzzle/batch' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/cache' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/common' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/guzzle' => 
+    array (
+      'pretty_version' => 'v3.8.1',
+      'version' => '3.8.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4de0618a01b34aa1c8c33a3f13f396dcd3882eba',
+    ),
+    'guzzle/http' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/inflection' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/iterator' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/log' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/parser' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-async' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-backoff' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-cache' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-cookie' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-curlauth' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-error-response' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-history' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-log' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-md5' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-mock' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/plugin-oauth' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/service' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
+    ),
+    'guzzle/stream' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v3.8.1',
+      ),
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -496,7 +659,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '891ac2f432f54514fc959aa63e228c8b2fef8edd',
+      'reference' => 'df15ca96863b58894ab0e62345538cda03910dcb',
     ),
     'laravel/sail' => 
     array (

@@ -15,8 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@yield("title")</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"/>
-    <link rel="shortcut icon" href="{{ asset('public/favicon.ico') }}"/>
-    <link rel="stylesheet" href=" {{ asset("public/css/app.css") }} "/>
+    <link rel="shortcut icon" href="{{ asset(env("META_DIR") . 'favicon.ico') }}"/>
+    <link rel="stylesheet" href=" {{ asset("css/app.css") }} "/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,80" rel="stylesheet">
@@ -116,6 +116,6 @@
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src=" {{ asset("public/js/app.js")}} "></script>
+<script src=" {{ asset("js/app.js")}} "></script>
 </body>
 </html>
