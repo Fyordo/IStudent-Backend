@@ -111,11 +111,11 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2021 - iStudent (0.1) - <a href="{{ route("about") }}">О нас</a> | <a href="{{ route("privacy") }}">Политика конфиденциальности</a>
+        &copy; 2021 - iStudent (0.5) - <a href="{{ route("about") }}">О нас</a> | <a href="{{ route("info") }}">Об iStudent</a>
     </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src=" {{ asset("js/app.js")}} "></script>
+<script src=" {{ asset(env("META_DIR") . "js/app.js")}} "></script>
 </body>
 </html>
