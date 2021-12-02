@@ -19,7 +19,6 @@ class StudentClass
         $this->id = $arr["id"];
         $this->name = $arr["name"];
         $this->email = $arr["email"];
-        $this->token = $arr["token"] ?? "";
         $this->groupId = $arr["groupId"];
         $this->isHeadman = $arr["isHeadman"];
         $this->photo = $arr["photo"];
