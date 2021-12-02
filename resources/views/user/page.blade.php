@@ -38,7 +38,7 @@ use App\Models\Classes\StudentClass;
                 <div class="text-left">
                     @if (isset($ownerStudent->photo))
                         <div class="text-center">
-                            <img src="data:image/jpeg;base64,{{$ownerStudent->photo}}" class="rounded-circle shadow"/>
+                            <img src="data:image/jpeg;base64,{{$ownerStudent->photo}}" class="rounded-circle shadow" width="360" height="360"/>
                         </div>
                     @else
                         <div class="text-center">
