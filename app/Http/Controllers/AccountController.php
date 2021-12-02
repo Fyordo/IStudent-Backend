@@ -27,7 +27,7 @@ class AccountController extends Controller
 
             $studentFind = Student::where('email', $request->input('email'))->first();
 
-            if ($studentFind && $studentFind["password"] == $request->input('password')) {
+            if ($studentFind && base64_decode($studentFind["password"]) == $request->input('password')) {
                 Auth::login($studentFind, true);
                 return redirect(route('home'));
             }
@@ -74,7 +74,7 @@ class AccountController extends Controller
 
             Student::where('id', Auth::id())->update([
                 'groupId' => (integer)$request->input('groupId'),
-                'password' => $request->input('password'),
+                'password' => base64_encode($request->input('password')),
                 'isHeadman' => !($request->input('isHeadman') == null)
             ]);
 
