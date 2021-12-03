@@ -593,6 +593,7 @@ class ComposerStaticInitbd9f5aa778bcc19024287c7189409730
         'App\\Models\\LessonAddiction' => __DIR__ . '/../..' . '/app/Models/LessonAddiction.php',
         'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
         'App\\Models\\Student' => __DIR__ . '/../..' . '/app/Models/Student.php',
+        'App\\Models\\StudentGroup' => __DIR__ . '/../..' . '/app/Models/StudentGroup.php',
         'App\\Models\\Teacher' => __DIR__ . '/../..' . '/app/Models/Teacher.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
