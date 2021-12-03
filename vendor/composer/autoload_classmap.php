@@ -42,6 +42,7 @@ return array(
     'App\\Models\\LessonAddiction' => $baseDir . '/app/Models/LessonAddiction.php',
     'App\\Models\\Notification' => $baseDir . '/app/Models/Notification.php',
     'App\\Models\\Student' => $baseDir . '/app/Models/Student.php',
+    'App\\Models\\StudentGroup' => $baseDir . '/app/Models/StudentGroup.php',
     'App\\Models\\Teacher' => $baseDir . '/app/Models/Teacher.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
