@@ -6,6 +6,7 @@ use App\Models\Classes\GroupClass;
 use App\Models\Classes\StudentClass;
 use App\Models\Group;
 use App\Models\Student;
+use App\Models\StudentGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +28,7 @@ class AccountController extends Controller
 
             $studentFind = Student::where('email', $request->input('email'))->first();
 
-            if ($studentFind && $studentFind["password"] == $request->input('password')) {
+            if ($studentFind && base64_decode($studentFind["password"]) == $request->input('password')) {
                 Auth::login($studentFind, true);
                 return redirect(route('home'));
             }
@@ -57,9 +58,21 @@ class AccountController extends Controller
     {
         if ($request->isMethod('post')) {
             $validateFileds = $request->validate([
-                'groupId' => 'required',
+                'groupId' => 'required', // Заранее проверено, что такой id есть в таблице групп
                 'password' => 'required|confirmed',
             ]);
+
+            // Проверка, верную ли группу указал студент
+            $studentFind = StudentClass::getStudent(Auth::user());
+            $studentGroup = StudentGroup::where("student", $studentFind->name)->first();
+            $groupID = (integer)$request->input('groupId');
+            if ($studentGroup != null){
+                $groupID = Group::where([
+                    'groupNumber' => $studentGroup["group"],
+                    'groupCourse' => $studentGroup["course"]
+                ])->first()["id"];
+            }
+
 
             // Проверка, есть ли у группы староста
             $group = Group::where('id', (integer)$request->input('groupId'))->first();
@@ -73,8 +86,8 @@ class AccountController extends Controller
             }
 
             Student::where('id', Auth::id())->update([
-                'groupId' => (integer)$request->input('groupId'),
-                'password' => $request->input('password'),
+                'groupId' => $groupID,
+                'password' => base64_encode($request->input('password')),
                 'isHeadman' => !($request->input('isHeadman') == null)
             ]);
 

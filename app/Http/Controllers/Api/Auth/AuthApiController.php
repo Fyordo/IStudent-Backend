@@ -44,7 +44,7 @@ class AuthApiController extends Controller
             }
 
             $groupID = $request->input('groupID');
-            $password = $request->input('password');
+            $password = base64_encode($request->input('password'));
             $isHeadman = $request->input('isHeadman');
             $group = Group::where("id", $groupID)->first();
             if (isset($group)) {
@@ -93,7 +93,7 @@ class AuthApiController extends Controller
         if ($request->hasHeader("login") && $request->hasHeader("password"))
         {
             $login = $request->header("login");
-            $password = $request->header("password");
+            $password = base64_encode($request->header("password"));
 
             $student = Student::where("email", $login)->first();
             if (!isset($student))
