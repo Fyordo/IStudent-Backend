@@ -17,6 +17,7 @@ class CreateTeachersTable extends Migration
             $table->integer("id")->unique();
             $table->string("name");
             $table->string("degree");
+            $table->string("photo");
         });
     }
 

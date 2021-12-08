@@ -42,6 +42,7 @@ class AdminApiController
                 $newTeacher["id"] = $teacher->id;
                 $newTeacher["name"] = $teacher->name;
                 $newTeacher["degree"] = $teacher->degree;
+                $newTeacher["photo"] = $teacher->photo;
                 $newTeacher->save();
             }
 
@@ -53,7 +54,7 @@ class AdminApiController
         $array = [
             'error' => 'Доступ к этим действиям имеет только администратор'
         ];
-        return response()->json($array);
+        return response()->json($array, 405);
     }
 
     public function addGroups(Request $request){
@@ -95,7 +96,7 @@ class AdminApiController
         $array = [
             'error' => 'Доступ к этим действиям имеет только администратор'
         ];
-        return response()->json($array);
+        return response()->json($array, 405);
     }
 
     public function addSchedule(Request $request){
@@ -156,7 +157,7 @@ class AdminApiController
         $array = [
             'error' => 'Доступ к этим действиям имеет только администратор'
         ];
-        return response()->json($array);
+        return response()->json($array, 405);
     }
 
     private function getLessonById($id, $lessons){

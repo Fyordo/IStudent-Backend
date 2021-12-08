@@ -20,7 +20,7 @@ class ScheduleApiController extends Controller
             $array = [
                 'error' => 'Ошибка доступа'
             ];
-            return response()->json($array);
+            return response()->json($array, 405);
         }
 
         $access = Student::where("token", $token)->first();
@@ -47,7 +47,7 @@ class ScheduleApiController extends Controller
             $array = [
                 'error' => 'Ошибка доступа или неверный токен'
             ];
-            return response()->json($array);
+            return response()->json($array, 405);
         }
     }
 
@@ -59,7 +59,7 @@ class ScheduleApiController extends Controller
             $array = [
                 'error' => 'Ошибка доступа'
             ];
-            return response()->json($array);
+            return response()->json($array, 405);
         }
 
         $access = Student::where("token", $token)->first();
@@ -99,7 +99,7 @@ class ScheduleApiController extends Controller
             $array = [
                 'error' => 'Ошибка доступа или неверный токен'
             ];
-            return response()->json($array);
+            return response()->json($array, 405);
         }
     }
 }

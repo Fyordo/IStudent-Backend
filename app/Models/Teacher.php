@@ -15,4 +15,5 @@ class Teacher extends Model
     public int $id;
     public string $name;
     public string $degree;
+    public string $photo;
 }

@@ -17,7 +17,7 @@ class StudentApiController extends Controller
             $array = [
                 'error' => 'Ошибка доступа'
             ];
-            return response()->json($array);
+            return response()->json($array, 405);
         }
 
         $access = Student::where("token", $token)->first();
@@ -35,7 +35,7 @@ class StudentApiController extends Controller
                 $array = [
                     'error' => 'Такого студента нет'
                 ];
-                return response()->json($array);
+                return response()->json($array, 405);
             }
 
         }
@@ -44,7 +44,7 @@ class StudentApiController extends Controller
             $array = [
                 'error' => 'Ошибка доступа или неверный токен'
             ];
-            return response()->json($array);
+            return response()->json($array, 405);
         }
 
     }
