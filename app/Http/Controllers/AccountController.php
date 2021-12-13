@@ -94,7 +94,7 @@ class AccountController extends Controller
             $studentFind = Student::where('email', Auth::user()["email"])->first();
 
             if (!($request->input('isHeadman') == null)) {
-                Group::where("id", (integer)$request->input('groupId'))
+                Group::where("id", $groupID)
                     ->update([
                         'headmanId' => Auth::id()
                     ]);
