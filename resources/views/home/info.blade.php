@@ -6,7 +6,7 @@ use App\Models\Classes\StudentClass;
 
 @extends('layouts.main')
 
-@section('title', 'О нас')
+@section('title', 'Об iStudent')
 
 @section('content')
     <div class="text-center">
