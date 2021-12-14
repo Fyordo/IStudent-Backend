@@ -200,7 +200,9 @@ class AccountController extends Controller
         $match = substr($email, strlen($email) - 8, 8) === "sfedu.ru"
             && $email[strlen($email) - 9] === '@';
 
-        if (!$match) {
+        if (!$match &&
+            $email != "i_student_test@outlook.com") // Аккаунт для тестирования для членов жюри
+        {
             return redirect(route("login", [
                 'message' => "Войти можно только через @sfedu.ru"
             ]));
