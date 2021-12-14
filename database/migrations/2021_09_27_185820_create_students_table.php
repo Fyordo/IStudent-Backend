@@ -18,8 +18,8 @@ class CreateStudentsTable extends Migration
             $table->string("name");
             $table->string("email");
             $table->string("password");
-            $table->integer("groupId");
-            $table->boolean("isHeadman");
+            $table->integer("group_id");
+            $table->boolean("is_headman");
         });
     }
 
