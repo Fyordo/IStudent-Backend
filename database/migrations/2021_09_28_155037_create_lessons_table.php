@@ -16,14 +16,12 @@ class CreateLessonsTable extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->integer("lessonNumber");
-            $table->integer("weekDay");
+            $table->integer("lesson_number");
+            $table->integer("week_day");
             $table->string("location");
             $table->string("lecturer");
-            $table->integer("groupId");
-            $table->boolean("upWeek");
-
-            $table->foreign('groupId')->references('id')->on('groups')->onDelete('cascade');
+            $table->integer("group_id");
+            $table->boolean("up_week");
         });
     }
 

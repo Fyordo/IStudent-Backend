@@ -29,7 +29,7 @@ class ScheduleApiController extends Controller
             $today = mktime(0, 0, 0, $month, $day, $year);
             $weekDay = date('w', $today);
 
-            $lessonsDB = Lesson::where("weekDay", $weekDay)->where('groupId', $group_id)->where('upWeek', (int)date('W', $today) % 2 != 0)->orderBy('lessonNumber')->get();
+            $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $group_id)->where('up_week', (int)date('W', $today) % 2 != 0)->orderBy('lesson_number')->get();
             $lessons = [];
 
             foreach ($lessonsDB as $lesson)
@@ -78,7 +78,7 @@ class ScheduleApiController extends Controller
             ];
 
             for ($i = 0; $i <= 6; $i++){
-                $lessonsDB = Lesson::where('groupId', $group_id)->where('weekDay', $i)->orderBy('lessonNumber')->get();
+                $lessonsDB = Lesson::where('group_id', $group_id)->where('week_day', $i)->orderBy('lesson_number')->get();
 
                 $lessonsDay = [];
                 foreach ($lessonsDB as $lesson)

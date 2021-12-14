@@ -15,12 +15,10 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->integer("studentId");
+            $table->integer("student_id");
             $table->string("topic");
             $table->dateTime("date");
             $table->string("text");
-
-            $table->foreign('studentId')->references('id')->on('students')->onDelete('cascade');
         });
     }
 

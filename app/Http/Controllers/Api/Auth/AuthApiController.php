@@ -35,7 +35,7 @@ class AuthApiController extends Controller
 
 
             $access = Student::where("token", $token)->first();
-            $studentID = $request->input('studentID');
+            $studentID = $request->input('student_id');
             if ($studentID != $access['id']){
                 $array = [
                     'error' => 'Ошибка доступа'
@@ -43,20 +43,20 @@ class AuthApiController extends Controller
                 return response()->json($array,405);
             }
 
-            $groupID = $request->input('groupID');
+            $groupID = $request->input('group_id');
             $password = base64_encode($request->input('password'));
-            $isHeadman = $request->input('isHeadman');
+            $isHeadman = $request->input('is_headman');
             $group = Group::where("id", $groupID)->first();
             if (isset($group)) {
-                if (!(isset($group['headmanId']) && $isHeadman)) {
+                if (!(isset($group['headman_id']) && $isHeadman)) {
                     Student::where('id', $studentID)->update([
-                        'groupId' => (int)$groupID,
+                        'group_id' => (int)$groupID,
                         'password' => $password,
-                        'isHeadman' => (bool)$isHeadman
+                        'is_headman' => (bool)$isHeadman
                     ]);
                     if ($isHeadman){
                         Group::where('id', $groupID)->update([
-                            'headmanId' => (int)$studentID
+                            'headman_id' => (int)$studentID
                         ]);
                     }
                     $array = [
@@ -106,7 +106,7 @@ class AuthApiController extends Controller
 
             if ($student["password"] == $password)
             {
-                $token = $this->generateRandomString(50);
+                $token = $this->generateRandomString(100);
                 $student->update([
                     'token' => $token,
                 ]);

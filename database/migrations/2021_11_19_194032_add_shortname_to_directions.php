@@ -14,7 +14,7 @@ class AddShortnameToDirections extends Migration
     public function up()
     {
         Schema::table('directions', function (Blueprint $table) {
-            $table->string("shortName")->nullable();
+            $table->string("short_name")->nullable();
         });
     }
 

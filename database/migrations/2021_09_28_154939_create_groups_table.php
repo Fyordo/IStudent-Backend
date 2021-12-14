@@ -15,10 +15,10 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->integer("groupNumber");
-            $table->integer("groupCourse");
-            $table->integer("headmanId");
-            $table->bigInteger("directionId");
+            $table->integer("group_number");
+            $table->integer("group_course");
+            $table->integer("headman_id")->nullable();
+            $table->bigInteger("direction_id");
         });
 
 

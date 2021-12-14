@@ -15,11 +15,9 @@ class CreateLessonAddictionsTable extends Migration
     {
         Schema::create('lesson_addictions', function (Blueprint $table) {
             $table->id();
-            $table->integer("lessonId");
+            $table->integer("lesson_id");
             $table->dateTime("date");
             $table->string("description");
-
-            $table->foreign("lessonId")->references("id")->on("lessons")->onDelete('cascade');
         });
     }
 
