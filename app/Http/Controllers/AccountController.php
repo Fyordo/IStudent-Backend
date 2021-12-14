@@ -32,6 +32,9 @@ class AccountController extends Controller
                 Auth::login($studentFind, true);
                 return redirect(route('home'));
             }
+            else{
+                $message = "Неверный логин или пароль";
+            }
         }
 
         return view("account.login", [
@@ -58,14 +61,14 @@ class AccountController extends Controller
     {
         if ($request->isMethod('post')) {
             $validateFileds = $request->validate([
-                'group_id' => 'required', // Заранее проверено, что такой id есть в таблице групп
+                'groupId' => 'required', // Заранее проверено, что такой id есть в таблице групп
                 'password' => 'required|confirmed',
             ]);
 
             // Проверка, верную ли группу указал студент
             $studentFind = StudentClass::getStudent(Auth::user());
             $studentGroup = StudentGroup::where("student", $studentFind->name)->first();
-            $group_id = (integer)$request->input('group_id');
+            $group_id = (integer)$request->input('groupId');
             if ($studentGroup != null){
                 $group_id = Group::where([
                     'group_number' => $studentGroup["group"],
@@ -75,7 +78,7 @@ class AccountController extends Controller
 
 
             // Проверка, есть ли у группы староста
-            $group = Group::where('id', (integer)$request->input('group_id'))->first();
+            $group = Group::where('id', $group_id)->first();
             if ($group['headman_id'] != null && !($request->input('is_headman') == null)) {
                 return redirect(route(
                     "loginAdd",

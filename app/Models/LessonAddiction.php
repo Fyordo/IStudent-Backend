@@ -16,8 +16,17 @@ class LessonAddiction extends Model
     protected $table = 'lesson_addictions';
     public $timestamps = false;
 
-    public int $id;
-    public int $lessonId;
-    public DateTime $date;
-    public string $description;
+    protected $fillable = [
+        'id',
+        'lesson_id',
+        'date',
+        'description'
+    ];
+
+    protected $visible = [
+        'id',
+        'lesson_id',
+        'date',
+        'description'
+    ];
 }

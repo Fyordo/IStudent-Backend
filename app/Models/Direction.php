@@ -15,7 +15,15 @@ class Direction extends Model
     protected $table = 'directions';
     public $timestamps = false;
 
-    public int $id;
-    public string $code;
-    public string $title;
+    protected $fillable = [
+        'id',
+        'code',
+        'title'
+    ];
+
+    protected $visible = [
+        'id',
+        'code',
+        'title'
+    ];
 }

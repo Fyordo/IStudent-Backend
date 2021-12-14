@@ -15,9 +15,19 @@ class Group extends Model
     protected $table = 'groups';
     public $timestamps = false;
 
-    public int $id;
-    public int $groupNumber;
-    public int $groupCourse;
-    public int $headmanId;
-    public int $directionId;
+    protected $fillable = [
+        'id',
+        'group_number',
+        'group_course',
+        'headman_id',
+        'direction_id'
+    ];
+
+    protected $visible = [
+        'id',
+        'group_number',
+        'group_course',
+        'headman_id',
+        'direction_id'
+    ];
 }

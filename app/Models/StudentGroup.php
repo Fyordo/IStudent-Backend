@@ -10,6 +10,7 @@ class StudentGroup extends Model
     use HasFactory;
 
     protected $table = "student_groups";
+    public $timestamps = false;
 
     protected $fillable = [
         'student',

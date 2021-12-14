@@ -21,5 +21,19 @@ class Notification extends Model
     public DateTime $date;
     public string $text;
 
+    protected $fillable = [
+        'id',
+        'student_id',
+        'topic',
+        'date',
+        'text'
+    ];
 
+    protected $visible = [
+        'id',
+        'student_id',
+        'topic',
+        'date',
+        'text'
+    ];
 }

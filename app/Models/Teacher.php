@@ -12,8 +12,17 @@ class Teacher extends Model
     protected $table = "teachers";
     public $timestamps = false;
 
-    public int $id;
-    public string $name;
-    public string $degree;
-    public string $photo;
+    protected $fillable = [
+        'id',
+        'name',
+        'degree',
+        'photo'
+    ];
+
+    protected $visible = [
+        'id',
+        'name',
+        'degree',
+        'photo'
+    ];
 }
