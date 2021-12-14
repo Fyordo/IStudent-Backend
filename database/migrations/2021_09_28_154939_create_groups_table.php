@@ -19,9 +19,6 @@ class CreateGroupsTable extends Migration
             $table->integer("groupCourse");
             $table->integer("headmanId");
             $table->bigInteger("directionId");
-
-            $table->foreign("headmanId")->references("id")->on("students")->onDelete("cascade");
-            $table->foreign("directionId")->references("id")->on("directions")->onDelete("cascade");
         });
 
 

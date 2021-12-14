@@ -40,7 +40,7 @@ use App\Models\Classes\StudentClass;
                                     $count = 0;
                                 ?>
                                 @foreach ($lessons as $lesson)
-                                    @if ($lesson->weekDay == $i && $lesson->upWeek)
+                                    @if ($lesson->week_day == $i && $lesson->up_week)
                                         <?php
                                             $count++;
                                         ?>
@@ -79,7 +79,7 @@ use App\Models\Classes\StudentClass;
                             $count = 0;
                             ?>
                             @foreach ($lessons as $lesson)
-                                @if ($lesson->weekDay == $i && !$lesson->upWeek)
+                                @if ($lesson->week_day == $i && !$lesson->up_week)
                                     <?php
                                     $count++;
                                     ?>

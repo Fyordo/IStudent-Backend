@@ -11,20 +11,20 @@ class StudentClass
     public string $name;
     public string $email;
     public string $token;
-    public int $groupId;
-    public bool $isHeadman;
+    public int $group_id;
+    public bool $is_headman;
     public array $notifications;
 
     public function __construct($arr){
         $this->id = $arr["id"];
         $this->name = $arr["name"];
         $this->email = $arr["email"];
-        $this->groupId = $arr["groupId"];
-        $this->isHeadman = $arr["isHeadman"];
+        $this->group_id = $arr["group_id"];
+        $this->is_headman = $arr["is_headman"];
         $this->photo = $arr["photo"];
         $this->notifications = [];
 
-        $notesDB = Notification::where("studentId", $this->id)->orderBy('date')->get();
+        $notesDB = Notification::where("student_id", $this->id)->orderBy('date')->get();
 
         foreach ($notesDB as $note)
         {
@@ -34,13 +34,13 @@ class StudentClass
 
     public function getGroup() : GroupClass
     {
-        return new GroupClass(Group::where("id", $this->groupId)->first());
+        return new GroupClass(Group::where("id", $this->group_id)->first());
     }
 
     public function printGroup(): string
     {
         $group = $this->getGroup();
-        return $group->groupCourse . '.' . $group->groupNumber;
+        return $group->group_course . '.' . $group->group_number;
     }
 
     public static function getStudent($arr): ?StudentClass

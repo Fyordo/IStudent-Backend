@@ -14,7 +14,7 @@ class GroupController extends Controller
     public function index($id)
     {
         $group = $this->findGroupById($id);
-        $headman = $this->findStudentById($group->headmanId);
+        $headman = $this->findStudentById($group->headman_id);
 
         return view("group.index")->with([
             'student' => StudentClass::getStudent(Auth::user()),
@@ -25,7 +25,7 @@ class GroupController extends Controller
 
     public function all()
     {
-        $groupsDB = Group::orderBy('groupCourse')->orderBy('groupNumber')->get();
+        $groupsDB = Group::orderBy('group_course')->orderBy('group_number')->get();
         $groups = [];
 
         foreach ($groupsDB as $group)

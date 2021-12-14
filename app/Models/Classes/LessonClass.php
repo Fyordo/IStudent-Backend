@@ -8,27 +8,27 @@ class LessonClass
 {
     public int $id;
     public string $title;
-    public int $lessonNumber;
-    public int $weekDay;
+    public int $lesson_number;
+    public int $week_day;
     public string $location;
     public string $lecturer;
-    public int $groupId;
-    public bool $upWeek;
+    public int $group_id;
+    public bool $up_week;
     public array $addictions;
 
     public function __construct($arr)
     {
         $this->id = $arr["id"];
         $this->title = $arr["title"];
-        $this->lessonNumber = $arr["lessonNumber"];
-        $this->weekDay = $arr["weekDay"];
+        $this->lesson_number = $arr["lesson_number"];
+        $this->week_day = $arr["week_day"];
         $this->location = $arr["location"];
         $this->lecturer = $arr["lecturer"];
-        $this->groupId = $arr["groupId"];
-        $this->upWeek = $arr["upWeek"];
+        $this->group_id = $arr["group_id"];
+        $this->up_week = $arr["up_week"];
         $this->addictions = [];
 
-        $addDB = LessonAddiction::where("lessonId", $this->id)->get();
+        $addDB = LessonAddiction::where("lesson_id", $this->id)->get();
 
         foreach ($addDB as $add) {
             array_push($this->addictions, new LessonAddictionClass($add));
@@ -53,12 +53,12 @@ class LessonClass
             mktime(17,25)
         ];
 
-        return date("H:i", $startTime[$this->lessonNumber - 1]) . " - " . date("H:i", $endTime[$this->lessonNumber - 1]);
+        return date("H:i", $startTime[$this->lesson_number - 1]) . " - " . date("H:i", $endTime[$this->lesson_number - 1]);
     }
 
-    public function getNameOfDay($weekDay = -1) : string
+    public function getNameOfDay($week_day = -1) : string
     {
-        switch ($this->weekDay)
+        switch ($this->week_day)
         {
             case 1:
                 return "Понедельник";

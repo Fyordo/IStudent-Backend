@@ -50,7 +50,7 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     @if ($student->email != "lagutinfedya@gmail.com")
-                                        <a class="dropdown-item" href="{{route("group", ['id' => $student->groupId])}}">Моя группа</a>
+                                        <a class="dropdown-item" href="{{route("group", ['id' => $student->group_id])}}">Моя группа</a>
                                     @endif
                                     <a class="dropdown-item" href="{{route("all")}}">Все группы</a>
                                 </div>
@@ -63,12 +63,12 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     @if ($student->email != "lagutinfedya@gmail.com")
-                                        <a class="dropdown-item" href="{{ route("lessonList", ['groupId' => $student->groupId, 'day' => $day, 'month' => $month, 'year' => $year]) }}">
+                                        <a class="dropdown-item" href="{{ route("lessonList", ['groupId' => $student->group_id, 'day' => $day, 'month' => $month, 'year' => $year]) }}">
                                             Сегодня
                                         </a>
-                                        <a class="dropdown-item" href="{{route("fullSchedule", ['groupId' => $student->groupId])}}">Полное расписание</a>
+                                        <a class="dropdown-item" href="{{route("fullSchedule", ['groupId' => $student->group_id])}}">Полное расписание</a>
                                     @endif
-                                    @if ($student->isHeadman)
+                                    @if ($student->is_headman)
                                         <a class="dropdown-item" href="#">Создать пару</a>
                                     @endif
                                 </div>

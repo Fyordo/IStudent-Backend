@@ -58,25 +58,25 @@ class AccountController extends Controller
     {
         if ($request->isMethod('post')) {
             $validateFileds = $request->validate([
-                'groupId' => 'required', // Заранее проверено, что такой id есть в таблице групп
+                'group_id' => 'required', // Заранее проверено, что такой id есть в таблице групп
                 'password' => 'required|confirmed',
             ]);
 
             // Проверка, верную ли группу указал студент
             $studentFind = StudentClass::getStudent(Auth::user());
             $studentGroup = StudentGroup::where("student", $studentFind->name)->first();
-            $groupID = (integer)$request->input('groupId');
+            $group_id = (integer)$request->input('group_id');
             if ($studentGroup != null){
-                $groupID = Group::where([
-                    'groupNumber' => $studentGroup["group"],
-                    'groupCourse' => $studentGroup["course"]
+                $group_id = Group::where([
+                    'group_number' => $studentGroup["group"],
+                    'group_course' => $studentGroup["course"]
                 ])->first()["id"];
             }
 
 
             // Проверка, есть ли у группы староста
-            $group = Group::where('id', (integer)$request->input('groupId'))->first();
-            if ($group['headmanId'] != null && !($request->input('isHeadman') == null)) {
+            $group = Group::where('id', (integer)$request->input('group_id'))->first();
+            if ($group['headman_id'] != null && !($request->input('is_headman') == null)) {
                 return redirect(route(
                     "loginAdd",
                     [
@@ -86,17 +86,17 @@ class AccountController extends Controller
             }
 
             Student::where('id', Auth::id())->update([
-                'groupId' => $groupID,
+                'group_id' => $group_id,
                 'password' => base64_encode($request->input('password')),
-                'isHeadman' => !($request->input('isHeadman') == null)
+                'is_headman' => !($request->input('is_headman') == null)
             ]);
 
             $studentFind = Student::where('email', Auth::user()["email"])->first();
 
-            if (!($request->input('isHeadman') == null)) {
-                Group::where("id", $groupID)
+            if (!($request->input('is_headman') == null)) {
+                Group::where("id", $group_id)
                     ->update([
-                        'headmanId' => Auth::id()
+                        'headman_id' => Auth::id()
                     ]);
             }
 
@@ -107,7 +107,7 @@ class AccountController extends Controller
             return redirect(route("home"));
         }
 
-        $groupsDB = Group::orderBy("groupCourse")->orderBy('groupNumber')->get(); // Данные из БД
+        $groupsDB = Group::orderBy("group_course")->orderBy('group_number')->get(); // Данные из БД
         $groups = []; // Массив нормальных классов
 
         foreach ($groupsDB as $group) {
@@ -214,8 +214,8 @@ class AccountController extends Controller
                     'name' => $fio,
                     'email' => $email,
                     'password' => $email,
-                    'groupId' => 0,
-                    'isHeadman' => false,
+                    'group_id' => 0,
+                    'is_headman' => false,
                     'photo' => $photo
                 ]
             ]);
