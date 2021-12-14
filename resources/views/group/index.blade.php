@@ -46,13 +46,13 @@ use App\Models\Classes\GroupClass;
             <div class="text-center"><h2>О группе</h2></div>
                     <div class="GreyBox-3">
                         <div class="text-left">
-                            <p><b>Курс:</b> {{$group->groupCourse}} </p>
-                            <p><b>Номер:</b> {{$group->groupNumber}}</p>
+                            <p><b>Курс:</b> {{$group->group_course}} </p>
+                            <p><b>Номер:</b> {{$group->group_number}}</p>
                             <p><b>Направление:</b> {{$group->direction->title}}</p>
                             <p>
                                 <b>Староста:</b>
                                 @if ($headman != null)
-                                    <a href=" {{ route("page", ["id" => $group->headmanId]) }}" class="floating-button" style="font-size: 15px; width: 400px;">{{ $headman->name }}</a>
+                                    <a href=" {{ route("page", ["id" => $group->headman_id]) }}" class="floating-button" style="font-size: 15px; width: 400px;">{{ $headman->name }}</a>
                                 @else
                                     <a>Староста не назначен</a>
                                 @endif

@@ -19,7 +19,7 @@ class LessonController extends Controller
         $tomorrow = date(mktime(0, 0, 0, $month, $day+1, $year));
         $weekDay = date('w', $today);
 
-        $lessonsDB = Lesson::where("weekDay", $weekDay)->where('groupId', $groupId)->where('upWeek', (int)date('W', $today) % 2 != 0)->orderBy('lessonNumber')->get();
+        $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $groupId)->where('up_week', (int)date('W', $today) % 2 != 0)->orderBy('lesson_number')->get();
         $lessons = [];
 
         foreach ($lessonsDB as $lesson)
@@ -45,7 +45,7 @@ class LessonController extends Controller
 
     public function full($groupId)
     {
-        $lessonsDB = Lesson::where('groupId', $groupId)->orderBy('weekDay')->orderBy('lessonNumber')->get();
+        $lessonsDB = Lesson::where('group_id', $groupId)->orderBy('week_day')->orderBy('lesson_number')->get();
         $lessons = [];
 
         foreach ($lessonsDB as $lesson)
@@ -98,6 +98,6 @@ class LessonController extends Controller
     private function printGroupById($id) : string
     {
         $group = Group::where("id", $id)->first();
-        return $group == null ? "" : $group['groupCourse'] . '.' . $group['groupNumber'];
+        return $group == null ? "" : $group['group_course'] . '.' . $group['group_number'];
     }
 }

@@ -44,7 +44,7 @@ use App\Models\Classes\GroupClass;
             <select name="groupId" id="groupId" >
                 @foreach($groups as $group)
                     @if ($group->id != 0)
-                        <option value="{{$group->id}}">{{ $group->groupCourse . '.' . $group->groupNumber}}</option>
+                        <option value="{{$group->id}}">{{ $group->group_course . '.' . $group->group_number}}</option>
                     @endif
                 @endforeach
             </select>

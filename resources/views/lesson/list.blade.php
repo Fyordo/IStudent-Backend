@@ -58,7 +58,7 @@ use App\Models\Classes\StudentClass;
             @foreach ($lessons as $lesson)
                 <li>
                     <b>{{ $lesson->title }}</b><br>
-                    @if ($student->isHeadman)
+                    @if ($student->is_headman)
                         <a href="#">
                             Добавить дополнение
                         </a><br>
