@@ -74,13 +74,13 @@ class AdminApiController
                 foreach ($groupsAPI as $groupAPI){
                     $group = new Group();
                     $group["id"] = $groupAPI->id;
-                    $group["groupNumber"] = $groupAPI->num;
-                    $group["groupCourse"] = $groupAPI->gradeid;
-                    $group["headmanId"] = null;
-                    $group["directionId"] = 1;
+                    $group["group_number"] = $groupAPI->num;
+                    $group["group_course"] = $groupAPI->gradeid;
+                    $group["headman_id"] = null;
+                    $group["direction_id"] = 1;
                     foreach ($directions as $direction){
-                        if ($direction["shortName"] == $groupAPI->name){
-                            $group["directionId"] = $direction["id"];
+                        if ($direction["short_name"] == $groupAPI->name){
+                            $group["direction_id"] = $direction["id"];
                         }
                     }
 
@@ -120,29 +120,29 @@ class AdminApiController
 
                     $lesson = new Lesson();
                     $lesson["title"] = $lessonAPI->subjectname;
-                    $lesson["groupId"] = $group['id'];
+                    $lesson["group_id"] = $group['id'];
                     $lesson["lecturer"] = $lessonAPI->teachername;
-                    $lesson["lessonNumber"] = $this->getLessonNumber($les);
+                    $lesson["lesson_number"] = $this->getLessonNumber($les);
                     $lesson["location"] = $lessonAPI->roomname;
-                    $lesson["weekDay"] = $this->getLessonWeekDay($les);
+                    $lesson["week_day"] = $this->getLessonWeekDay($les);
                     $type = $this->getLessonWeekType($les);
 
                     if ($type == "f"){
-                        $lesson["upWeek"] = true;
+                        $lesson["up_week"] = true;
                         $lesson->save();
 
                         $lesson = new Lesson();
                         $lesson["title"] = $lessonAPI->subjectname;
-                        $lesson["groupId"] = $group['id'];
+                        $lesson["group_id"] = $group['id'];
                         $lesson["lecturer"] = $lessonAPI->teachername;
-                        $lesson["lessonNumber"] = $this->getLessonNumber($les);
+                        $lesson["lesson_number"] = $this->getLessonNumber($les);
                         $lesson["location"] = $lessonAPI->roomname;
-                        $lesson["weekDay"] = $this->getLessonWeekDay($les);
-                        $lesson["upWeek"] = false;
+                        $lesson["week_day"] = $this->getLessonWeekDay($les);
+                        $lesson["up_week"] = false;
                         $lesson->save();
                     }
                     else{
-                        $lesson["upWeek"] = $type == 'u';
+                        $lesson["up_week"] = $type == 'u';
                         $lesson->save();
                     }
 
