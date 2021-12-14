@@ -12,6 +12,13 @@ class Grade extends Model
     protected $table = "grades";
     public $timestamps = false;
 
-    public int $id;
-    public string $degree;
+    protected $fillable = [
+        'id',
+        'degree'
+    ];
+
+    protected $visible = [
+        'id',
+        'degree'
+    ];
 }

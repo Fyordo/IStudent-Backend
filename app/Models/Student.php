@@ -19,15 +19,6 @@ class Student extends Authenticatable
     protected $table = 'students';
     public $timestamps = false;
 
-    private int $id;
-    public string $name;
-    public string $email;
-    private string $password;
-    public string $token;
-    public int $groupId;
-    public bool $isHeadman;
-    public string $photo;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -40,7 +31,8 @@ class Student extends Authenticatable
         'groupId',
         'token',
         'isHeadman',
-        'photo'
+        'photo',
+        'remember_token'
     ];
 
     /**
@@ -51,7 +43,8 @@ class Student extends Authenticatable
     protected $hidden = [
         'id',
         'token',
-        'password'
+        'password',
+        'remember_token'
     ];
 
     /**

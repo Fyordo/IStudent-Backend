@@ -15,12 +15,25 @@ class Lesson extends Model
     protected $table = 'lessons';
     public $timestamps = false;
 
-    public int $id;
-    public string $title;
-    public int $lessonNumber;
-    public int $weekDay;
-    public string $location;
-    public string $lecturer;
-    public int $groupId;
-    public bool $upWeek;
+    protected $fillable = [
+        'id',
+        'title',
+        'lesson_number',
+        'week_day',
+        'location',
+        'lecturer',
+        'group_id',
+        'up_week'
+    ];
+
+    protected $visible = [
+        'id',
+        'title',
+        'lesson_number',
+        'week_day',
+        'location',
+        'lecturer',
+        'group_id',
+        'up_week'
+    ];
 }
