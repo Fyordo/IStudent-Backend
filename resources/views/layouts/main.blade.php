@@ -26,10 +26,10 @@
     <nav class="navbar">
         <div class="link-list">
             @if(!isset($student))
-                <div class=link-list-block>
+                <div class=link-list-block  style="padding-left: 570px">
                     <ul class="link-sublist text-right">
                         <li>
-                            <a href="{{ route("home") }}">Главная</a>
+                            <a  class="header-button" href="{{ route("home") }}">Главная</a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +41,7 @@
                 <div class=link-list-block>
                     <ul class="link-sublist">
                         <li>
-                            <a href="{{ route("login") }}">Войти</a>
+                            <a class="header-button" href="{{ route("login") }}">Войти</a>
                         </li>
                     </ul>
                 </div>
