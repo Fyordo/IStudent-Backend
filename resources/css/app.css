@@ -36,39 +36,8 @@ a{
     clear: left; /* Отмена обтекания */
 }
 
-header .nav-item a::after{
-    content: '';
-    display: block;
-    width: 100%;
-    background-color: #ccc;
-    height: 1px;
-    transform: scale(0);
-    transition: all .3s;
-    text-align: center;
-}
-
-header .nav-item a:hover::after{
-    transform: scale(1);
-}
-
-header {
-    position: relative;
-}
-
-header .navbar-brand {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 30px;
-}
-
 .container .row .col-sm{
     text-align: left;
-}
-
-header .nav-item .dropdown{
-    margin-left: 6px;
 }
 
 .lesson{
@@ -177,4 +146,105 @@ footer {
     color: #fff;
     background-color: #9966CC;
     border-color: #9966CC;
+}
+
+/* HEADER */
+
+.header {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    width: 900px;
+    background-color: #ddd;
+    border-radius: 8px;
+    flex-grow: 1;
+}
+
+.nav-logo-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.nav-logo {
+    height: 23px;
+    padding: 5px;
+    width: auto;
+}
+
+.text-right {
+    justify-content: flex-end;
+}
+
+.link-sublist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.link-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.link-list-block {
+    width: 350px;
+}
+
+.link-list a:link,
+.link-list a:visited {
+    text-decoration: none;
+    color: #000;
+}
+
+.link-list li:not(:last-child) {
+    margin-right: 10px;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.dropdown-wrapper {
+    position: relative;
+}
+
+.dropdown-link:first-child {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 2px;
+}
+
+.dropdown-content {
+    padding: 10px 8px;
+    border-radius: 8px;
+    display: flex;
+    white-space: nowrap;
+    flex-direction: column;
+    text-align: center;
+    position: absolute;
+    row-gap: 2px;
+    top: calc(100% + 12px);
+    left: 0;
+    transform: translateX(-25%);
+    background-color: #ddd;
+}
+
+.dropdown {
+    cursor: pointer;
+}
+
+.display-none {
+    display: none !important;
 }

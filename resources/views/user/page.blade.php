@@ -50,10 +50,12 @@ use App\Models\Classes\StudentClass;
                     <b>Email: </b><a href="mailto:{{ $ownerStudent->email }}" class="floating-button" style="font-size: 20px;">{{ $ownerStudent->email }}</a><br>
                     @if ($ownerStudent->is_headman)
                         <br>
-                        <br>
-                        <br>
                         <b>Староста</b>
                     @endif
+                    <br>
+                    <div class="text-center">
+                        <a href="{{ route("logout")}}" class="logout-button"><b>Выйти</b></a>
+                    </div>
                 </div>
             </div>
         </div>
