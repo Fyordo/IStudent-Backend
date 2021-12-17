@@ -53,9 +53,11 @@ use App\Models\Classes\StudentClass;
                         <b>Староста</b>
                     @endif
                     <br>
-                    <div class="text-center">
-                        <a href="{{ route("logout")}}" class="logout-button"><b>Выйти</b></a>
-                    </div>
+                    @if ($student->id == $ownerStudent->id)
+                        <div class="text-center">
+                            <a href="{{ route("logout")}}" class="logout-button"><b>Выйти</b></a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

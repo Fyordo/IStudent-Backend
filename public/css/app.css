@@ -152,7 +152,7 @@ footer {
 
 .logout-button:hover {
     background: #d30000;
-    box-shadow: 0 15px 20px #d30000;
+    box-shadow: 0 15px 20px #bd0000;
     color: white;
     transform: translateY(-7px);
 }
