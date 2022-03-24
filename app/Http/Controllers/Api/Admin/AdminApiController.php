@@ -42,12 +42,12 @@ class AdminApiController
                 $newTeacher["id"] = $teacher->id;
                 $newTeacher["name"] = $teacher->name;
                 $newTeacher["degree"] = $teacher->degree;
-                $newTeacher["photo"] = $teacher->photo;
+                $newTeacher["photo"] = "";
                 $newTeacher->save();
             }
 
             $array = [
-                'status' => 'Перподаватели успешно записаны в базу данных'
+                'status' => 'Преподаватели успешно записаны в базу данных'
             ];
             return response()->json($array);
         }
@@ -121,7 +121,7 @@ class AdminApiController
                     $lesson = new Lesson();
                     $lesson["title"] = $lessonAPI->subjectname;
                     $lesson["group_id"] = $group['id'];
-                    $lesson["lecturer"] = $lessonAPI->teachername;
+                    $lesson["teacher_id"] = $lessonAPI->teacherid;
                     $lesson["lesson_number"] = $this->getLessonNumber($les);
                     $lesson["location"] = $lessonAPI->roomname;
                     $lesson["week_day"] = $this->getLessonWeekDay($les);
@@ -134,7 +134,7 @@ class AdminApiController
                         $lesson = new Lesson();
                         $lesson["title"] = $lessonAPI->subjectname;
                         $lesson["group_id"] = $group['id'];
-                        $lesson["lecturer"] = $lessonAPI->teachername;
+                        $lesson["teacher_id"] = $lessonAPI->teacherid;
                         $lesson["lesson_number"] = $this->getLessonNumber($les);
                         $lesson["location"] = $lessonAPI->roomname;
                         $lesson["week_day"] = $this->getLessonWeekDay($les);

@@ -63,7 +63,7 @@ use App\Models\Classes\StudentClass;
                             Добавить дополнение
                         </a><br>
                     @endif
-                    <em>Ведёт: {{ $lesson->lecturer }}</em><br>
+                    <em>Ведёт: {{ $lesson->teacher === null ? "" : $lesson->teacher->name }}</em><br>
                     <em>Место проведения: {{ $lesson->location }}</em><br>
                     <em>Время: {{ $lesson->getTime() }}</em>
                     @if (count($lesson->addictions) > 0)

@@ -3,6 +3,7 @@
 namespace App\Models\Classes;
 
 use App\Models\LessonAddiction;
+use App\Models\Teacher;
 
 class LessonClass
 {
@@ -11,7 +12,7 @@ class LessonClass
     public int $lesson_number;
     public int $week_day;
     public string $location;
-    public string $lecturer;
+    public ?TeacherClass $teacher;
     public int $group_id;
     public bool $up_week;
     public array $addictions;
@@ -23,7 +24,7 @@ class LessonClass
         $this->lesson_number = $arr["lesson_number"];
         $this->week_day = $arr["week_day"];
         $this->location = $arr["location"];
-        $this->lecturer = $arr["lecturer"];
+        $this->teacher = $arr["teacher_id"] == "" ? null : new TeacherClass(Teacher::where('id', $arr["teacher_id"])->first()->toArray());
         $this->group_id = $arr["group_id"];
         $this->up_week = $arr["up_week"];
         $this->addictions = [];

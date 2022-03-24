@@ -135,7 +135,7 @@ class ScheduleApiController extends Controller
 
             foreach ($lessonsDB as $lesson)
             {
-                array_push($lessons, new LessonClass($lesson));
+                $lessons[] = new LessonClass($lesson);
             }
 
             return response()->json([

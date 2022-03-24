@@ -21,7 +21,7 @@ class Lesson extends Model
         'lesson_number',
         'week_day',
         'location',
-        'lecturer',
+        'teacher_id',
         'group_id',
         'up_week'
     ];
@@ -32,7 +32,7 @@ class Lesson extends Model
         'lesson_number',
         'week_day',
         'location',
-        'lecturer',
+        'teacher_id',
         'group_id',
         'up_week'
     ];
