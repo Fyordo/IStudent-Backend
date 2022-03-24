@@ -112,6 +112,47 @@ Route::group(
             }
         );
 
+        // УПРОЩЁННОЕ АПИ
+
+        Route::group(
+            [
+                'prefix' => '/my'
+            ],
+            function () {
+
+                Route::group(
+                    [
+                        'prefix' => '/student'
+                    ],
+                    function () {
+                        Route::get('/get', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'MYget']);
+                    }
+                );
+
+                Route::group(
+                    [
+                        'prefix' => '/group'
+                    ],
+                    function () {
+                        Route::get('/get/{id}', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'get']);
+                        Route::get('/students/{id}', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'getStudents']);
+                        Route::get('/all', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'all']);
+                    }
+                );
+
+                Route::group(
+                    [
+                        'prefix' => '/schedule'
+                    ],
+                    function () {
+                        Route::get('/list/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'day']);
+                        Route::get('/full/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'full']);
+                    }
+                );
+
+            }
+        );
+
         // АДМИН ПАНЕЛЬ
 
         Route::group(
