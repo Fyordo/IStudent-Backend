@@ -218,7 +218,7 @@ class AccountController extends Controller
                 [
                     'name' => $fio,
                     'email' => $email,
-                    'password' => $email,
+                    'password' => Hash::make($email),
                     'group_id' => 0,
                     'is_headman' => false,
                     'photo' => $photo
