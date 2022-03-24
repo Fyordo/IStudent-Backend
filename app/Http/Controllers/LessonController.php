@@ -24,7 +24,7 @@ class LessonController extends Controller
 
         foreach ($lessonsDB as $lesson)
         {
-            array_push($lessons, new LessonClass($lesson));
+            $lessons[] = new LessonClass($lesson);
         }
 
         $groupNum = (new GroupClass(Group::where('id', $groupId)->first()))->printGroup();

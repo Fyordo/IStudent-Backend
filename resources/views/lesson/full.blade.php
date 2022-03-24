@@ -46,7 +46,7 @@ use App\Models\Classes\StudentClass;
                                         ?>
                                         <li>
                                             <b>{{$lesson->title}}</b><br>
-                                            <em><b>Ведёт:</b> {{$lesson->lecturer}}</em><br>
+                                            <em><b>Ведёт:</b> {{ $lesson->teacher === null ? "" : $lesson->teacher->name }}</em><br>
                                             <em><b>Место проведения:</b> {{$lesson->location}}</em><br>
                                             <em><b>Время:</b> {{$lesson->getTime()}}</em>
                                         </li>
@@ -85,7 +85,7 @@ use App\Models\Classes\StudentClass;
                                     ?>
                                     <li>
                                         <b>{{$lesson->title}}</b><br>
-                                        <em><b>Ведёт:</b> {{$lesson->lecturer}}</em><br>
+                                        <em><b>Ведёт:</b> {{$lesson->teacher === null ? "" : $lesson->teacher->name}}</em><br>
                                         <em><b>Место проведения:</b> {{$lesson->location}}</em><br>
                                         <em><b>Время:</b> {{$lesson->getTime()}}</em>
                                     </li>
