@@ -42,7 +42,7 @@ class AdminApiController
                 $newTeacher["id"] = $teacher->id;
                 $newTeacher["name"] = $teacher->name;
                 $newTeacher["degree"] = $teacher->degree;
-                $newTeacher["photo"] = $teacher->photo;
+                $newTeacher["photo"] = "";
                 $newTeacher->save();
             }
 
