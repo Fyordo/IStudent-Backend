@@ -134,9 +134,8 @@ Route::group(
                         'prefix' => '/group'
                     ],
                     function () {
-                        Route::get('/get/{id}', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'get']);
-                        Route::get('/students/{id}', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'getStudents']);
-                        Route::get('/all', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'all']);
+                        Route::get('/get', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'MYget']);
+                        Route::get('/students', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'MYgetStudents']);
                     }
                 );
 
