@@ -107,7 +107,7 @@ Route::group(
                 'prefix' => '/schedule'
             ],
             function () {
-                Route::get('/list/{group_id}/{day}/{month}/{year}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'day']);
+                Route::get('/list/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'day']);
                 Route::get('/full/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'full']);
             }
         );

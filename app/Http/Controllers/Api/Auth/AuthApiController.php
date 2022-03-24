@@ -8,6 +8,7 @@ use App\Models\Group;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthApiController extends Controller
 {
@@ -93,7 +94,7 @@ class AuthApiController extends Controller
         if ($request->hasHeader("login") && $request->hasHeader("password"))
         {
             $login = $request->header("login");
-            $password = base64_encode($request->header("password"));
+            $password = $request->header("password");
 
             $student = Student::where("email", $login)->first();
             if (!isset($student))
@@ -104,7 +105,7 @@ class AuthApiController extends Controller
                 return response()->json($array,405);
             }
 
-            if ($student["password"] == $password)
+            if (Hash::check($password, $student["password"]))
             {
                 $token = $this->generateRandomString(100);
                 $student->update([

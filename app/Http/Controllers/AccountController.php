@@ -10,6 +10,8 @@ use App\Models\StudentGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
 use Microsoft\Graph\Graph;
 use Microsoft\Graph\Model;
 
@@ -28,7 +30,7 @@ class AccountController extends Controller
 
             $studentFind = Student::where('email', $request->input('email'))->first();
 
-            if ($studentFind && base64_decode($studentFind["password"]) == $request->input('password')) {
+            if ($studentFind && Hash::check($request->input('password'), $studentFind["password"])) {
                 Auth::login($studentFind, true);
                 return redirect(route('home'));
             }

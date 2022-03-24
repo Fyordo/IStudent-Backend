@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class ScheduleApiController extends Controller
 {
-    public function day(Request $request, $group_id, $day, $month, $year)
+    public function day(Request $request, $group_id)
     {
         $token = $request->header("token");
         if ($token == "")
@@ -26,6 +26,10 @@ class ScheduleApiController extends Controller
         $access = Student::where("token", $token)->first();
         if (isset($access))
         {
+            $day = $request->input("day");
+            $month = $request->input("month");
+            $year = $request->input("year");
+
             $today = mktime(0, 0, 0, $month, $day, $year);
             $weekDay = date('w', $today);
 
