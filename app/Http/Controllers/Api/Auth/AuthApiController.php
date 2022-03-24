@@ -45,7 +45,7 @@ class AuthApiController extends Controller
             }
 
             $groupID = $request->input('group_id');
-            $password = base64_encode($request->input('password'));
+            $password = Hash::make($request->input('password'));
             $isHeadman = $request->input('is_headman');
             $group = Group::where("id", $groupID)->first();
             if (isset($group)) {

@@ -119,4 +119,84 @@ class GroupApiController extends Controller
             return response()->json($array,405);
         }
     }
+
+    // MY
+
+    public function MYget(Request $request)
+    {
+        $token = $request->header("token");
+        if ($token == "")
+        {
+            $array = [
+                'error' => 'Ошибка доступа'
+            ];
+            return response()->json($array, 405);
+        }
+
+        $access = Student::where("token", $token)->first();
+        if (isset($access))
+        {
+            $groupDB = Group::where("id", $access->group_id)->first();
+
+            if (isset($groupDB))
+            {
+                $group = new GroupClass($groupDB);
+                return response()->json($group);
+            }
+            else
+            {
+                $array = [
+                    'error' => 'Такой группы нет'
+                ];
+                return response()->json($array, 405);
+            }
+
+        }
+        else
+        {
+            $array = [
+                'error' => 'Ошибка доступа или неверный токен'
+            ];
+            return response()->json($array, 405);
+        }
+    }
+
+    public function MYgetStudents(Request $request)
+    {
+        $token = $request->header("token");
+        if ($token == "")
+        {
+            $array = [
+                'error' => 'Ошибка доступа'
+            ];
+            return response()->json($array, 405);
+        }
+
+        $access = Student::where("token", $token)->first();
+        if (isset($access))
+        {
+            $groupDB = Group::where("id", $access->group_id)->first();
+
+            if (isset($groupDB))
+            {
+                $group = new GroupClass($groupDB);
+                return response()->json($group->getStudents());
+            }
+            else
+            {
+                $array = [
+                    'error' => 'Такой группы нет'
+                ];
+                return response()->json($array, 405);
+            }
+
+        }
+        else
+        {
+            $array = [
+                'error' => 'Ошибка доступа или неверный токен'
+            ];
+            return response()->json($array, 405);
+        }
+    }
 }
