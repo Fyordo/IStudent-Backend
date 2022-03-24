@@ -92,7 +92,7 @@ class AccountController extends Controller
 
             Student::where('id', Auth::id())->update([
                 'group_id' => $group_id,
-                'password' => base64_encode($request->input('password')),
+                'password' => Hash::make($request->input('password')),
                 'is_headman' => !($request->input('is_headman') == null)
             ]);
 
