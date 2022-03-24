@@ -144,8 +144,8 @@ Route::group(
                         'prefix' => '/schedule'
                     ],
                     function () {
-                        Route::get('/list/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'day']);
-                        Route::get('/full/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'full']);
+                        Route::get('/list', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYday']);
+                        Route::get('/full', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYfull']);
                     }
                 );
 
