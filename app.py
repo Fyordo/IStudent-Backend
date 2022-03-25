@@ -11,8 +11,8 @@ app.config['JSON_AS_ASCII'] = False
 
 @app.route('/api/news/vk', methods=['GET'])
 def get_vk_posts():
-    # парсинг 15 публикаций в группе вк
-    count_posts = 15
+    # парсинг 5 публикаций в группе вк
+    count_posts = 5
     response = requests.get('https://api.vk.com/method/wall.get',
                             params={
                                 'access_token': TOKEN,
