@@ -28,9 +28,9 @@ class Student extends Authenticatable
         'name',
         'email',
         'password',
-        'groupId',
+        'group_id',
         'token',
-        'isHeadman',
+        'is_headman',
         'photo',
         'remember_token'
     ];
