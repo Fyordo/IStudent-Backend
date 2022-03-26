@@ -46,7 +46,7 @@ use App\Models\Classes\StudentClass;
                         </div>
                     @endif
                     <br>
-                    <a href="{{ route("group", ['id'=>$ownerStudent->group_id]) }}" class="floating-button"><b>Группа:</b> {{$ownerStudent->printGroup()}}</a><br><br>
+                    <a href="{{ route("group", ['id'=>$ownerStudent->group->id]) }}" class="floating-button"><b>Группа:</b> {{$ownerStudent->printGroup()}}</a><br><br>
                     <b>Email: </b><a href="mailto:{{ $ownerStudent->email }}" class="floating-button" style="font-size: 20px;">{{ $ownerStudent->email }}</a><br>
                     @if ($ownerStudent->is_headman)
                         <br>
@@ -65,11 +65,11 @@ use App\Models\Classes\StudentClass;
 
         <div class="col-sm">
             <div class="text-center"><h2>Уведомления</h2>
-            @if ($ownerStudent->id == $student->id || $student->is_headman && $ownerStudent->group_id == $student->group_id)
+            @if ($ownerStudent->id == $student->id || $student->is_headman && $ownerStudent->group->id == $student->group->id)
                 <a href="#" class="floating-button">Добавить уведомление</a><br>
             @endif
 
-            @if ($student->is_headman && $ownerStudent->group_id == $student->group_id)
+            @if ($student->is_headman && $ownerStudent->group->id == $student->group->id)
                 <a href="#" class="floating-button">Добавить уведомление группе</a><br>
             @endif
             </div>

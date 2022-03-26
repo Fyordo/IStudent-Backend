@@ -10,16 +10,18 @@ class StudentClass
     public int $id;
     public string $name;
     public string $email;
-    public string $token;
-    public int $group_id;
+    //public int $group_id;
+    public GroupClass $group;
     public bool $is_headman;
+    public string $photo;
     public array $notifications;
 
     public function __construct($arr){
         $this->id = $arr["id"];
         $this->name = $arr["name"];
         $this->email = $arr["email"];
-        $this->group_id = $arr["group_id"];
+        //$this->group_id = $arr["group_id"];
+        $this->group = new GroupClass(Group::where('id', $arr["group_id"])->first()->toArray());
         $this->is_headman = $arr["is_headman"];
         $this->photo = $arr["photo"];
         $this->notifications = [];
@@ -34,7 +36,7 @@ class StudentClass
 
     public function getGroup() : GroupClass
     {
-        return new GroupClass(Group::where("id", $this->group_id)->first());
+        return new GroupClass(Group::where("id", $this->group->id)->first());
     }
 
     public function printGroup(): string

@@ -51,17 +51,17 @@
                         <li class="dropdown-wrapper">
                             <a class="dropdown" id="dropdown-groups">Группы</a>
                             <div class="dropdown-content-groups display-none" id="dropdown-groups-content">
-                                <a class="dropdown-link" href="{{route("group", ['id' => $student->group_id])}}">Моя группа</a>
+                                <a class="dropdown-link" href="{{route("group", ['id' => $student->group->id])}}">Моя группа</a>
                                 <a class="dropdown-link" href="{{route("all")}}">Все группы</a>
                             </div>
                         </li>
                         <li class="dropdown-wrapper">
                             <a class="dropdown" id="dropdown-lessons">Расписание</a>
                             <div class="dropdown-content-lessons display-none" id="dropdown-lessons-content">
-                                <a class="dropdown-link" href="{{ route("lessonList", ['groupId' => $student->group_id, 'day' => $day, 'month' => $month, 'year' => $year]) }}">
+                                <a class="dropdown-link" href="{{ route("lessonList", ['groupId' => $student->group->id, 'day' => $day, 'month' => $month, 'year' => $year]) }}">
                                     Сегодня
                                 </a>
-                                <a class="dropdown-link" href="{{route("fullSchedule", ['groupId' => $student->group_id])}}">
+                                <a class="dropdown-link" href="{{route("fullSchedule", ['groupId' => $student->group->id])}}">
                                     На неделю
                                 </a>
                             </div>
