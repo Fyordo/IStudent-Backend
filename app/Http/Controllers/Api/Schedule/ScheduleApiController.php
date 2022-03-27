@@ -118,6 +118,13 @@ class ScheduleApiController extends Controller
         }
     }
 
+    public function week(Request $request)
+    {
+        return response()->json([
+            'type' => (int)date('W') % 2 == env("UP_WEEK") ? "up" : "down"
+        ]);
+    }
+
     // MY
 
     public function MYday(Request $request)

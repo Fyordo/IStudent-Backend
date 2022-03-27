@@ -110,6 +110,7 @@ Route::group(
             function () {
                 Route::post('/list/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'day']);
                 Route::post('/full/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'full']);
+                Route::get('/week', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'week']);
             }
         );
 
