@@ -76,7 +76,7 @@ Route::group(
                 'prefix' => '/auth'
             ],
             function () {
-                Route::get('/login', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'login']);
+                Route::post('/login', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'login']);
                 Route::post('/logout', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'logout']);
                 Route::post('/add', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'add']);
                 Route::post('/check', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'check']);
@@ -88,7 +88,7 @@ Route::group(
                 'prefix' => '/student'
             ],
             function () {
-                Route::get('/get/{id}', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'get']);
+                Route::post('/get/{id}', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'get']);
             }
         );
 
@@ -97,8 +97,8 @@ Route::group(
                 'prefix' => '/group'
             ],
             function () {
-                Route::get('/get/{id}', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'get']);
-                Route::get('/students/{id}', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'getStudents']);
+                Route::post('/get/{id}', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'get']);
+                Route::post('/students/{id}', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'getStudents']);
                 Route::get('/all', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'all']);
             }
         );
@@ -108,8 +108,8 @@ Route::group(
                 'prefix' => '/schedule'
             ],
             function () {
-                Route::get('/list/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'day']);
-                Route::get('/full/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'full']);
+                Route::post('/list/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'day']);
+                Route::post('/full/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'full']);
             }
         );
 
@@ -126,7 +126,7 @@ Route::group(
                         'prefix' => '/student'
                     ],
                     function () {
-                        Route::get('/get', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'MYget']);
+                        Route::post('/get', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'MYget']);
                     }
                 );
 
@@ -135,8 +135,8 @@ Route::group(
                         'prefix' => '/group'
                     ],
                     function () {
-                        Route::get('/get', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'MYget']);
-                        Route::get('/students', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'MYgetStudents']);
+                        Route::post('/get', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'MYget']);
+                        Route::post('/students', [\App\Http\Controllers\Api\Group\GroupApiController::class, 'MYgetStudents']);
                     }
                 );
 
@@ -145,8 +145,8 @@ Route::group(
                         'prefix' => '/schedule'
                     ],
                     function () {
-                        Route::get('/list', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYday']);
-                        Route::get('/full', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYfull']);
+                        Route::post('/list', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYday']);
+                        Route::post('/full', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYfull']);
                     }
                 );
 

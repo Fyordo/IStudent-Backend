@@ -33,7 +33,7 @@ class ScheduleApiController extends Controller
             $today = mktime(0, 0, 0, $month, $day, $year);
             $weekDay = date('w', $today);
 
-            $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $group_id)->where('up_week', (int)date('W', $today) % 2 != 0)->orderBy('lesson_number')->get();
+            $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $group_id)->where('up_week', (int)date('W', $today) % 2 == env("UP_WEEK"))->orderBy('lesson_number')->get();
             $lessons = [];
 
             foreach ($lessonsDB as $lesson)
@@ -69,6 +69,8 @@ class ScheduleApiController extends Controller
         $access = Student::where("token", $token)->first();
         if (isset($access))
         {
+            $type = $request->input("type");
+
             $lessons = [];
 
             $weekDays = [
@@ -82,7 +84,16 @@ class ScheduleApiController extends Controller
             ];
 
             for ($i = 0; $i <= 6; $i++){
-                $lessonsDB = Lesson::where('group_id', $group_id)->where('week_day', $i)->orderBy('lesson_number')->get();
+
+                if ($type == "up"){
+                    $lessonsDB = Lesson::where('group_id', $group_id)->where('week_day', $i)->where("up_week", true)->orderBy('lesson_number')->get();
+                }
+                else if ($type == "down"){
+                    $lessonsDB = Lesson::where('group_id', $group_id)->where('week_day', $i)->where("up_week", false)->orderBy('lesson_number')->get();
+                }
+                else{
+                    $lessonsDB = Lesson::where('group_id', $group_id)->where('week_day', $i)->orderBy('lesson_number')->get();
+                }
 
                 $lessonsDay = [];
                 foreach ($lessonsDB as $lesson)
@@ -130,7 +141,7 @@ class ScheduleApiController extends Controller
             $today = mktime(0, 0, 0, $month, $day, $year);
             $weekDay = date('w', $today);
 
-            $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $access->group_id)->where('up_week', (int)date('W', $today) % 2 != 0)->orderBy('lesson_number')->get();
+            $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $access->group_id)->where('up_week', (int)date('W', $today) % 2 == env("UP_WEEK"))->orderBy('lesson_number')->get();
             $lessons = [];
 
             foreach ($lessonsDB as $lesson)
@@ -166,6 +177,8 @@ class ScheduleApiController extends Controller
         $access = Student::where("token", $token)->first();
         if (isset($access))
         {
+            $type = $request->input("type");
+
             $lessons = [];
 
             $weekDays = [
@@ -179,12 +192,21 @@ class ScheduleApiController extends Controller
             ];
 
             for ($i = 0; $i <= 6; $i++){
-                $lessonsDB = Lesson::where('group_id', $access->group_id)->where('week_day', $i)->orderBy('lesson_number')->get();
+                if ($type == "up"){
+                    $lessonsDB = Lesson::where('group_id', $access->group_id)->where('week_day', $i)->where("up_week", true)->orderBy('lesson_number')->get();
+                }
+                else if ($type == "down"){
+                    $lessonsDB = Lesson::where('group_id', $access->group_id)->where('week_day', $i)->where("up_week", false)->orderBy('lesson_number')->get();
+                }
+                else{
+                    $lessonsDB = Lesson::where('group_id', $access->group_id)->where('week_day', $i)->orderBy('lesson_number')->get();
+                }
+
 
                 $lessonsDay = [];
                 foreach ($lessonsDB as $lesson)
                 {
-                    array_push($lessonsDay, new LessonClass($lesson));
+                    $lessonsDay[] = new LessonClass($lesson);
                 }
 
                 $lessons += [$weekDays[$i] => $lessonsDay];
