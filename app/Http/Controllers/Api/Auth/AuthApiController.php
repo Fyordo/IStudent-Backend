@@ -158,6 +158,89 @@ class AuthApiController extends Controller
         }
     }
 
+    /**
+     * Добавление информации
+     */
+    public function check(Request $request){
+        if ($request->isMethod('post')) {
+            $token = $request->header("token");
+            if ($token == "")
+            {
+                $array = [
+                    'error' => 'Ошибка доступа'
+                ];
+                return response()->json($array, 405);
+            }
+
+
+            if (!(Student::where("token", $token)->exists())){
+                $array = [
+                    'type' => 1,
+                    'status' => 'Токен не действителен!'
+                ];
+            }
+            else{
+                $array = [
+                    'type' => 0,
+                    'status' => 'Токен действителен!'
+                ];
+            }
+
+            return response()->json($array,200);
+
+
+            $access = Student::where("token", $token)->first();
+            $studentID = $request->input('student_id');
+            if ($studentID != $access['id']){
+                $array = [
+                    'error' => 'Ошибка доступа'
+                ];
+                return response()->json($array,405);
+            }
+
+            $groupID = $request->input('group_id');
+            $password = Hash::make($request->input('password'));
+            $isHeadman = $request->input('is_headman');
+            $group = Group::where("id", $groupID)->first();
+            if (isset($group)) {
+                if (!(isset($group['headman_id']) && $isHeadman)) {
+                    Student::where('id', $studentID)->update([
+                        'group_id' => (int)$groupID,
+                        'password' => $password,
+                        'is_headman' => (bool)$isHeadman
+                    ]);
+                    if ($isHeadman){
+                        Group::where('id', $groupID)->update([
+                            'headman_id' => (int)$studentID
+                        ]);
+                    }
+                    $array = [
+                        'message' => 'Данные о студенте успешно обновлены'
+                    ];
+                    return response()->json($array);
+                }
+                else {
+                    $array = [
+                        'error' => 'Ошибка, у группы уже есть староста'
+                    ];
+                    return response()->json($array, 405);
+                }
+            }
+            else {
+                $array = [
+                    'error' => 'Ошибка, такой группы не существует'
+                ];
+                return response()->json($array, 405);
+            }
+        }
+        else {
+            $array = [
+                'error' => 'Ошибка, поддерживается только POST-метод'
+            ];
+            return response()->json($array, 405);
+        }
+    }
+
     private function generateRandomString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
