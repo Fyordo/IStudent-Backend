@@ -79,6 +79,7 @@ Route::group(
                 Route::get('/login', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'login']);
                 Route::post('/logout', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'logout']);
                 Route::post('/add', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'add']);
+                Route::post('/check', [\App\Http\Controllers\Api\Auth\AuthApiController::class, 'check']);
             }
         );
 
