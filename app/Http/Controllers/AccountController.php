@@ -136,7 +136,7 @@ class AccountController extends Controller
         session_start();
 
         $tenant = "common";
-        $client_id = "cccbc182-4e70-41ed-a39a-5b658f2b0ee9";
+        $client_id = env("MICROSOFT_CLIENT_ID");
         $callback = env("APP_URL") . "/callback";
         $scopes = ["User.Read"];
 
@@ -168,8 +168,8 @@ class AccountController extends Controller
         $data = array(
             'grant_type' => 'authorization_code',
             'code' => $_REQUEST['code'],
-            'client_id' => 'cccbc182-4e70-41ed-a39a-5b658f2b0ee9',
-            'client_secret' => '-UA7Q~O8AzrUWBEaR16C7mys3jPamdrcrE37U',
+            'client_id' => env("MICROSOFT_CLIENT_ID"),
+            'client_secret' => env("MICROSOFT_CLIENT_SECRET"),
             'redirect_uri' => env("APP_URL") . '/callback',
         );
 
