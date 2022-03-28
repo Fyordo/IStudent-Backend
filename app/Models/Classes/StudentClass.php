@@ -11,7 +11,7 @@ class StudentClass
     public string $name;
     public string $email;
     //public int $group_id;
-    public GroupClass $group;
+    public ?GroupClass $group;
     public bool $is_headman;
     public string $photo;
     public array $notifications;
@@ -21,7 +21,7 @@ class StudentClass
         $this->name = $arr["name"];
         $this->email = $arr["email"];
         //$this->group_id = $arr["group_id"];
-        $this->group = new GroupClass(Group::where('id', $arr["group_id"])->first()->toArray());
+        $this->group = $arr["group_id"] === null ? null : new GroupClass(Group::where('id', $arr["group_id"])->first()->toArray());
         $this->is_headman = $arr["is_headman"];
         $this->photo = $arr["photo"];
         $this->notifications = [];
