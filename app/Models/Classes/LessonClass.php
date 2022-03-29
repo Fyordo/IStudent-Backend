@@ -32,7 +32,7 @@ class LessonClass
         $addDB = LessonAddiction::where("lesson_id", $this->id)->get();
 
         foreach ($addDB as $add) {
-            array_push($this->addictions, new LessonAddictionClass($add));
+            $this->addictions[] = $add;
         }
     }
 

@@ -17,7 +17,9 @@ class LessonAddictionClass
     {
         $this->id = $arr["id"];
 //        $this->lessonId = $arr["lesson_id"];
-        $this->lesson = new LessonClass(Lesson::where('id',$arr["lesson_id"])->first()->toArray());
+        $lessonClass = new LessonClass(Lesson::where('id',$arr["lesson_id"])->first()->toArray());
+
+        $this->lesson = $lessonClass;
         $this->date = $arr["date"];
         $this->description = $arr["description"];
     }
