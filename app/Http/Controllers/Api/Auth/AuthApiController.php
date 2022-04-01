@@ -116,7 +116,7 @@ class AuthApiController extends Controller
             else
             {
                 $array = [
-                    'error' => 'Ошибка, неверный логин и пароль'
+                    'error' => 'Ошибка, неверный логин или пароль'
                 ];
                 return response()->json($array, 401);
             }
