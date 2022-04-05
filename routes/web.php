@@ -89,6 +89,7 @@ Route::group(
             ],
             function () {
                 Route::post('/get/{id}', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'get']);
+                Route::post('/replace_photo/{id}', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'replace_photo']);
             }
         );
 
@@ -111,6 +112,16 @@ Route::group(
                 Route::post('/list/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'day']);
                 Route::post('/full/{group_id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'full']);
                 Route::get('/week', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'week']);
+            }
+        );
+
+        Route::group(
+            [
+                'prefix' => '/teacher'
+            ],
+            function () {
+                Route::post('/get/{teacher_id}', [\App\Http\Controllers\Api\Teacher\TeacherApiController::class, 'get']);
+                Route::post('/all', [\App\Http\Controllers\Api\Teacher\TeacherApiController::class, 'all']);
             }
         );
 
@@ -148,6 +159,15 @@ Route::group(
                     function () {
                         Route::post('/list', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYday']);
                         Route::post('/full', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYfull']);
+                    }
+                );
+
+                Route::group(
+                    [
+                        'prefix' => '/teacher'
+                    ],
+                    function () {
+                        Route::post('/all', [\App\Http\Controllers\Api\Teacher\TeacherApiController::class, 'MYget']);
                     }
                 );
 
