@@ -114,6 +114,16 @@ Route::group(
             }
         );
 
+        Route::group(
+            [
+                'prefix' => '/teacher'
+            ],
+            function () {
+                Route::post('/get/{teacher_id}', [\App\Http\Controllers\Api\Teacher\TeacherApiController::class, 'get']);
+                Route::post('/all', [\App\Http\Controllers\Api\Teacher\TeacherApiController::class, 'all']);
+            }
+        );
+
         // УПРОЩЁННОЕ АПИ
 
         Route::group(
@@ -148,6 +158,15 @@ Route::group(
                     function () {
                         Route::post('/list', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYday']);
                         Route::post('/full', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYfull']);
+                    }
+                );
+
+                Route::group(
+                    [
+                        'prefix' => '/teacher'
+                    ],
+                    function () {
+                        Route::post('/all', [\App\Http\Controllers\Api\Teacher\TeacherApiController::class, 'MYget']);
                     }
                 );
 
