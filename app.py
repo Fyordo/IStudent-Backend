@@ -25,6 +25,7 @@ def get_vk_posts():
     result = []
 
     for post in data:
+        post_link = f"https://vk.com/sic_mmcs?w=wall{post['owner_id']}_{post['id']}"
         date_of_publication_post = post['date']  # время в unix формате (в секундах, прошедших с 1 января 1970 года)
         # переводим в читаемое время
         date_of_publication = datetime.utcfromtimestamp(int(date_of_publication_post) + 10800).strftime(
@@ -48,7 +49,8 @@ def get_vk_posts():
             {
                 "date": date_of_publication,
                 "text": text_post,
-                "files_to_post": files_to_post
+                "files_to_post": files_to_post,
+                "post_link": post_link
             }
         )
     return jsonify({'result': result})
