@@ -2,8 +2,11 @@
 
 namespace App\Models\Classes;
 
+use App\Models\Lesson;
 use App\Models\LessonAddiction;
 use App\Models\Teacher;
+use DateTime;
+use Illuminate\Support\Facades\Date;
 
 class LessonClass
 {
@@ -17,7 +20,7 @@ class LessonClass
     public bool $up_week;
     public array $addictions;
 
-    public function __construct($arr)
+    public function __construct($arr, $date = null)
     {
         $this->id = $arr["id"];
         $this->title = $arr["title"];
@@ -29,10 +32,23 @@ class LessonClass
         $this->up_week = $arr["up_week"];
         $this->addictions = [];
 
-        $addDB = LessonAddiction::where("lesson_id", $this->id)->get();
+        $addictions = LessonAddiction::where('group_id', $arr["group_id"])->get();
 
-        foreach ($addDB as $add) {
-            $this->addictions[] = $add;
+        foreach ($addictions as $addiction) {
+            $addiction_date = new DateTime($addiction->date);
+            $week_day = date('w', $addiction_date);
+            $up_week = (int)date('W', $addiction_date) % 2 != env('UP_WEEK');
+
+            if ($arr["up_week"] == $up_week && $arr["week_day"] == $week_day){
+                if ($date){
+                    if ($date == $addiction_date){
+                        $this->addictions[] = new LessonAddiction($addiction);
+                    }
+                }
+                else{
+                    $this->addictions[] = new LessonAddiction($addiction);
+                }
+            }
         }
     }
 

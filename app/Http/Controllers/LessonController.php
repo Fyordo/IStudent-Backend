@@ -19,12 +19,12 @@ class LessonController extends Controller
         $tomorrow = date(mktime(0, 0, 0, $month, $day+1, $year));
         $weekDay = date('w', $today);
 
-        $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $groupId)->where('up_week', (int)date('W', $today) % 2 != 0)->orderBy('lesson_number')->get();
+        $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $groupId)->where('up_week', (int)date('W', $today) % 2 != env('UP_WEEK'))->orderBy('lesson_number')->get();
         $lessons = [];
 
         foreach ($lessonsDB as $lesson)
         {
-            $lessons[] = new LessonClass($lesson);
+            $lessons[] = new LessonClass($lesson, $today);
         }
 
         $groupNum = (new GroupClass(Group::where('id', $groupId)->first()))->printGroup();
