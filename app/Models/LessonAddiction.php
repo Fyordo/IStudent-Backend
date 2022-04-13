@@ -18,14 +18,14 @@ class LessonAddiction extends Model
 
     protected $fillable = [
         'id',
-        'lesson_id',
+        'group_id',
         'date',
         'description'
     ];
 
     protected $visible = [
         'id',
-        'lesson_id',
+        'group_id',
         'date',
         'description'
     ];

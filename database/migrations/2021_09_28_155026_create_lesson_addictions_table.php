@@ -15,7 +15,7 @@ class CreateLessonAddictionsTable extends Migration
     {
         Schema::create('lesson_addictions', function (Blueprint $table) {
             $table->id();
-            $table->integer("lesson_id");
+            $table->integer("group_id");
             $table->dateTime("date");
             $table->string("description");
         });

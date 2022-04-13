@@ -38,7 +38,7 @@ class ScheduleApiController extends Controller
 
             foreach ($lessonsDB as $lesson)
             {
-                array_push($lessons, new LessonClass($lesson));
+                $lessons[] = new LessonClass($lesson, $today);
             }
 
             return response()->json([
@@ -98,7 +98,7 @@ class ScheduleApiController extends Controller
                 $lessonsDay = [];
                 foreach ($lessonsDB as $lesson)
                 {
-                    array_push($lessonsDay, new LessonClass($lesson));
+                    $lessonsDay[] = new LessonClass($lesson);
                 }
 
                 $lessons += [$weekDays[$i] => $lessonsDay];
@@ -153,7 +153,7 @@ class ScheduleApiController extends Controller
 
             foreach ($lessonsDB as $lesson)
             {
-                $lessons[] = new LessonClass($lesson);
+                $lessons[] = new LessonClass($lesson, $today);
             }
 
             return response()->json([
