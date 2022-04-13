@@ -15,8 +15,8 @@ class LessonAddictionClass
     public function __construct($arr)
     {
         $this->id = $arr["id"];
-        $this->lessonId = $arr["group_id"];
-        $this->date = $arr["date"];
+        $this->group_id = $arr["group_id"];
+        $this->date = new DateTime($arr["date"]);
         $this->description = $arr["description"];
     }
 }
