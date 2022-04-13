@@ -6,7 +6,9 @@ use App\Models\Lesson;
 use App\Models\LessonAddiction;
 use App\Models\Teacher;
 use DateTime;
+use ErrorException;
 use Illuminate\Support\Facades\Date;
+use Mockery\Exception;
 
 class LessonClass
 {
@@ -56,18 +58,22 @@ class LessonClass
         }
     }
 
-    private function getTimeByLessonNumber($day, $month, $year): DateTime
+    private function getTimeByLessonNumber($day, $month, $year): ?DateTime
     {
         $startTime = [
             mktime(8, 0, 0, $month, $day, $year),
             mktime(9, 50, 0, $month, $day, $year),
             mktime(11, 55, 0, $month, $day, $year),
             mktime(13, 45, 0, $month, $day, $year),
-            mktime(15, 50, 0, $month, $day, $year)
+            mktime(15, 50, 0, $month, $day, $year),
         ];
-
-        $date = new DateTime();
-        $date->setTimestamp($startTime[$this->lesson_number]);
+        try{
+            $date = new DateTime();
+            $date->setTimestamp($startTime[$this->lesson_number-1]);
+        }
+        catch (ErrorException $exception){
+            return null;
+        }
 
         return $date;
     }
