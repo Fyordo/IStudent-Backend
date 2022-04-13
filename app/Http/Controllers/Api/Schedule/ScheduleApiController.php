@@ -38,7 +38,7 @@ class ScheduleApiController extends Controller
 
             foreach ($lessonsDB as $lesson)
             {
-                $lessons[] = new LessonClass($lesson, $today);
+                $lessons[] = new LessonClass($lesson, true, $month, $day, $year);
             }
 
             return response()->json([
@@ -153,7 +153,7 @@ class ScheduleApiController extends Controller
 
             foreach ($lessonsDB as $lesson)
             {
-                $lessons[] = new LessonClass($lesson, $today);
+                $lessons[] = new LessonClass($lesson, true, $month, $day, $year);
             }
 
             return response()->json([
