@@ -159,6 +159,7 @@ Route::group(
                     function () {
                         Route::post('/list', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYday']);
                         Route::post('/full', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYfull']);
+                        Route::post('/all', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYall']);
                     }
                 );
 

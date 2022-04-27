@@ -8,6 +8,7 @@ use App\Models\Classes\LessonClass;
 use App\Models\Group;
 use App\Models\Lesson;
 use App\Models\Student;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class ScheduleApiController extends Controller
@@ -118,10 +119,13 @@ class ScheduleApiController extends Controller
         }
     }
 
-    public function week(Request $request)
+    public function week($datetime = null)
     {
+        if ($datetime === null){
+            $datetime = (new \DateTime())->getTimestamp();
+        }
         return response()->json([
-            'type' => (int)date('W') % 2 == env("UP_WEEK") ? "up" : "down"
+            'type' => (int)date('W', $datetime) % 2 == env("UP_WEEK") ? "up" : "down"
         ]);
     }
 
@@ -148,7 +152,7 @@ class ScheduleApiController extends Controller
             $today = mktime(0, 0, 0, $month, $day, $year);
             $weekDay = date('w', $today);
 
-            $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $access->group_id)->where('up_week', (int)date('W', $today) % 2 == env("UP_WEEK"))->orderBy('lesson_number')->get();
+            $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $access->group_id)->where('up_week', $this->week())->orderBy('lesson_number')->get();
             $lessons = [];
 
             foreach ($lessonsDB as $lesson)
@@ -223,6 +227,67 @@ class ScheduleApiController extends Controller
                 'lessons' => $lessons
             ]);
 
+        }
+        else
+        {
+            $array = [
+                'error' => 'Ошибка доступа или неверный токен'
+            ];
+            return response()->json($array, 405);
+        }
+    }
+
+    // РАБОТАЕТ С БОЖЬЕЙ ПОМОЩЬЮ, НЕ ТРОГАТЬ!!!
+    public function MYall(Request $request)
+    {
+        $token = $request->header("token");
+        if ($token == "")
+        {
+            $array = [
+                'error' => 'Ошибка доступа'
+            ];
+            return response()->json($array, 405);
+        }
+
+        $student = Student::where("token", $token)->first();
+        if (isset($student))
+        {
+            $month = $request->input("month");
+            $year = $request->input("year");
+
+            if ($month < 8){ // Если второй семестр
+                $start_datetime = mktime(0, 0, 0, 1, 1, $year);
+                $end_datetime = mktime(0, 0, 0, 8, 1, $year);
+            }
+            else{ // Если первый семестр
+                $start_datetime = mktime(0, 0, 0, 8, 1, $year);
+                $end_datetime = mktime(0, 0, 0, 1, 1, $year+1);
+            }
+
+            $list = array_unique(array_column(Lesson::where('group_id', $student->group_id)
+                ->select('title')->get()->toArray(), 'title'));
+            sort($list);
+            $lessons = [];
+
+            foreach ($list as $item){
+                $lessons[$item] = [];
+            }
+
+            for ($i = $start_datetime; $i < $end_datetime; $i += 60*60*24){
+                $weekDay = date('w', $i);
+
+                $schedule_today = Lesson::where('group_id', $student->group_id)->where('week_day', $weekDay)->where('up_week', $this->week($i))->get()->toArray();
+                foreach ($schedule_today as $item){
+                    $lesson = new LessonClass($item, true, date('j', $i), date('n', $i), date('Y', $i));
+                    $lesson->date = date('d.m.Y', $i);
+                    $lessons[$lesson->title][] = $lesson;
+                }
+            }
+
+            return response()->json([
+                'list' => $list,
+                'lessons' => $lessons
+            ]);
         }
         else
         {
