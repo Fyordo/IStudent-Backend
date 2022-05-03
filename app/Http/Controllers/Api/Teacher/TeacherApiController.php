@@ -113,4 +113,34 @@ class TeacherApiController extends Controller
         }
 
     }
+
+    public function MYall(Request $request)
+    {
+        $token = $request->header("token");
+        if ($token == "")
+        {
+            $array = [
+                'error' => 'Ошибка доступа'
+            ];
+            return response()->json($array, 405);
+        }
+
+        $access = Student::where("token", $token)->first();
+        if (isset($access))
+        {
+            $list = [];
+            foreach (Teacher::all() as $teacher){
+                $list[] = new TeacherClass($teacher->toArray());
+            }
+            return response()->json($list);
+        }
+        else
+        {
+            $array = [
+                'error' => 'Ошибка доступа или неверный токен'
+            ];
+            return response()->json($array, 405);
+        }
+
+    }
 }

@@ -51,7 +51,7 @@ class StudentApiController extends Controller
 
     }
 
-    public function replace_photo(Request $request)
+    public function replacePhoto(Request $request)
     {
         if ($request->isMethod('post')) {
             $token = $request->header('token');
