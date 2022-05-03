@@ -169,6 +169,7 @@ Route::group(
                     ],
                     function () {
                         Route::post('/all', [\App\Http\Controllers\Api\Teacher\TeacherApiController::class, 'MYget']);
+                        Route::post('/list', [\App\Http\Controllers\Api\Teacher\TeacherApiController::class, 'MYall']);
                     }
                 );
 
