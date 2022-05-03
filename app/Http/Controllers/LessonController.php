@@ -7,6 +7,7 @@ use App\Models\Classes\LessonClass;
 use App\Models\Classes\StudentClass;
 use App\Models\Group;
 use App\Models\Lesson;
+use App\Models\LessonAddiction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,6 +71,26 @@ class LessonController extends Controller
         ])->with([
             'student' => StudentClass::getStudent(Auth::user())
         ]);
+    }
+
+    public function updateLessonAddictions(Request $request){
+        if ($request->isMethod('post')) {
+            $date = date(mktime(0,0,0,
+                $request->input('month'),
+                $request->input('day'),
+                $request->input('year')));
+            LessonAddiction::insert([
+                [
+                    'date' => $date,
+                    'text' => $request->input('text')
+                ]
+            ]);
+        }
+        else {
+            $array = [
+                'error' => 'Ошибка, поддерживается только POST-метод'
+            ];
+        }
     }
 
     // Вспомогательные функции
