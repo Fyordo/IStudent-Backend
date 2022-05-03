@@ -119,13 +119,10 @@ class ScheduleApiController extends Controller
         }
     }
 
-    public function week($datetime = null)
+    public function week(Request $request)
     {
-        if ($datetime === null){
-            $datetime = (new \DateTime())->getTimestamp();
-        }
         return response()->json([
-            'type' => (int)date('W', $datetime) % 2 == env("UP_WEEK") ? "up" : "down"
+            'type' => (int)date('W') % 2 == env("UP_WEEK") ? "up" : "down"
         ]);
     }
 
