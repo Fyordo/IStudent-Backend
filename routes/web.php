@@ -89,7 +89,7 @@ Route::group(
             ],
             function () {
                 Route::post('/get/{id}', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'get']);
-                Route::post('/replace_photo/{id}', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'replace_photo']);
+                Route::post('/replace_photo/{id}', [\App\Http\Controllers\Api\Student\StudentApiController::class, 'replacePhoto']);
             }
         );
 
