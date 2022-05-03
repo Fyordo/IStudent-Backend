@@ -276,7 +276,7 @@ class ScheduleApiController extends Controller
             for ($i = $start_datetime; $i < $end_datetime; $i += 60*60*24){
                 $weekDay = date('w', $i);
 
-                $schedule_today = Lesson::where('group_id', $student->group_id)->where('week_day', $weekDay)->where('up_week', $this->week($i))->get()->toArray();
+                $schedule_today = Lesson::where('group_id', $student->group_id)->where('week_day', $weekDay)->where('up_week', $this->upWeek($i))->get()->toArray();
                 foreach ($schedule_today as $item){
                     $lesson = new LessonClass($item, true, date('j', $i), date('n', $i), date('Y', $i));
                     $lesson->date = date('d.m.Y', $i);
@@ -296,5 +296,13 @@ class ScheduleApiController extends Controller
             ];
             return response()->json($array, 405);
         }
+    }
+
+    private function upWeek($datetime = null)
+    {
+        if ($datetime === null){
+            $datetime = (new \DateTime())->getTimestamp();
+        }
+        return (int)date('W', $datetime) % 2 == env("UP_WEEK");
     }
 }
