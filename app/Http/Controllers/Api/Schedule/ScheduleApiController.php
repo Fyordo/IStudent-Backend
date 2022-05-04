@@ -181,6 +181,8 @@ class ScheduleApiController extends Controller
                 'status' => 'Ошибка, поддерживается только POST-метод'
             ];
         }
+
+        return response()->json($array);
     }
 
     public function MYday(Request $request)
