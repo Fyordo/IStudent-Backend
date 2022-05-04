@@ -126,18 +126,42 @@ class ScheduleApiController extends Controller
         ]);
     }
 
-    public function updateLessonAddictions(Request $request){
+
+    // MY
+
+    public function MYupdateLessonAddictions(Request $request){
         if ($request->isMethod('post')) {
-            $date = date(mktime(0,0,0,
-                $request->input('month'),
-                $request->input('day'),
-                $request->input('year')));
-            LessonAddiction::insert([
-                [
-                    'date' => $date,
-                    'text' => $request->input('text')
-                ]
-            ]);
+            $token = $request->header("token");
+            if ($token == "")
+            {
+                $array = [
+                    'error' => 'Ошибка доступа'
+                ];
+                return response()->json($array, 405);
+            }
+
+            $access = Student::where("token", $token)->first();
+            if (isset($access)) {
+                $date = date(mktime(
+                    $request->input('hour'),
+                    $request->input('minutes'),
+                    0,
+                    $request->input('month'),
+                    $request->input('day'),
+                    $request->input('year')));
+                LessonAddiction::insert([
+                    [
+                        'group_id' => $access->group_id,
+                        'date' => $date,
+                        'description' => $request->input('text')
+                    ]
+                ]);
+            }
+            else {
+                $array = [
+                    'error' => 'Неверный токен'
+                ];
+            }
         }
         else {
             $array = [
@@ -145,8 +169,6 @@ class ScheduleApiController extends Controller
             ];
         }
     }
-
-    // MY
 
     public function MYday(Request $request)
     {

@@ -160,7 +160,7 @@ Route::group(
                         Route::post('/list', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYday']);
                         Route::post('/full', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYfull']);
                         Route::post('/all', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYall']);
-                        Route::post('/addiction', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'updateLessonAddictions']);
+                        Route::post('/addiction', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYupdateLessonAddictions']);
 
                     }
                 );
