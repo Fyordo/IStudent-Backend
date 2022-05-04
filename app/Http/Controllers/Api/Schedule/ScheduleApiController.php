@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Models\Lesson;
 use App\Models\LessonAddiction;
 use App\Models\Student;
+use DateTime;
 use Illuminate\Http\Request;
 
 class ScheduleApiController extends Controller
@@ -126,27 +127,63 @@ class ScheduleApiController extends Controller
         ]);
     }
 
-    public function updateLessonAddictions(Request $request){
+
+    // MY
+
+    public function MYupdateLessonAddictions(Request $request){
         if ($request->isMethod('post')) {
-            $date = date(mktime(0,0,0,
-                $request->input('month'),
-                $request->input('day'),
-                $request->input('year')));
-            LessonAddiction::insert([
-                [
-                    'date' => $date,
-                    'text' => $request->input('text')
-                ]
-            ]);
+            $token = $request->header("token");
+            if ($token == "")
+            {
+                $array = [
+                    'error' => 'Ошибка доступа'
+                ];
+                return response()->json($array, 405);
+            }
+
+            $access = Student::where("token", $token)->first();
+            if (isset($access)) {
+                if ($access->isHeadman) {
+                    $date = mktime(
+                        $request->input('hour'),
+                        $request->input('minutes'),
+                        0,
+                        $request->input('month'),
+                        $request->input('day'),
+                        $request->input('year'));
+                    $dt = new DateTime();
+                    $dt->setTimestamp($date);
+                    LessonAddiction::insert([
+                        [
+                            'group_id' => $access->group_id,
+                            'date' => $dt,
+                            'description' => $request->input('text')
+                        ]
+                    ]);
+                    $array = [
+                        'status' => 'Дополнение успешно сохранено'
+                    ];
+                }
+                else {
+                    $array = [
+                        'status' => 'Вы не староста'
+                    ];
+                }
+            }
+            else {
+                $array = [
+                    'status' => 'Неверный токен'
+                ];
+            }
         }
         else {
             $array = [
-                'error' => 'Ошибка, поддерживается только POST-метод'
+                'status' => 'Ошибка, поддерживается только POST-метод'
             ];
         }
-    }
 
-    // MY
+        return response()->json($array);
+    }
 
     public function MYday(Request $request)
     {
