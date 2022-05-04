@@ -143,10 +143,11 @@ class ScheduleApiController extends Controller
 
             $access = Student::where("token", $token)->first();
             if (isset($access)) {
-                if ($access->isHeadman) {
+                if ($access->is_headman) {
+                    $hour_minutes = $this->getLessonTimeByNumber($request->input('lesson_number'));
                     $date = mktime(
-                        $request->input('hour'),
-                        $request->input('minutes'),
+                        $hour_minutes['hour'],
+                        $hour_minutes['minutes'],
                         0,
                         $request->input('month'),
                         $request->input('day'),
@@ -355,5 +356,35 @@ class ScheduleApiController extends Controller
     private function upWeek(int $datetime)
     {
         return (int)date('W', $datetime) % 2 == env("UP_WEEK");
+    }
+
+    private function getLessonTimeByNumber(int $lesson_number){
+        switch ($lesson_number){
+            case 1:
+                return [
+                    'hour' => 8,
+                    'minutes' => 0
+                ];
+            case 2:
+                return [
+                    'hour' => 9,
+                    'minutes' => 50
+                ];
+            case 3:
+                return [
+                    'hour' => 11,
+                    'minutes' => 55
+                ];
+            case 4:
+                return [
+                    'hour' => 13,
+                    'minutes' => 45
+                ];
+            case 5:
+                return [
+                    'hour' => 15,
+                    'minutes' => 50
+                ];
+        }
     }
 }
