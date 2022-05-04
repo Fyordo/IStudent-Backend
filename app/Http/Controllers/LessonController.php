@@ -73,25 +73,7 @@ class LessonController extends Controller
         ]);
     }
 
-    public function updateLessonAddictions(Request $request){
-        if ($request->isMethod('post')) {
-            $date = date(mktime(0,0,0,
-                $request->input('month'),
-                $request->input('day'),
-                $request->input('year')));
-            LessonAddiction::insert([
-                [
-                    'date' => $date,
-                    'text' => $request->input('text')
-                ]
-            ]);
-        }
-        else {
-            $array = [
-                'error' => 'Ошибка, поддерживается только POST-метод'
-            ];
-        }
-    }
+
 
     // Вспомогательные функции
 

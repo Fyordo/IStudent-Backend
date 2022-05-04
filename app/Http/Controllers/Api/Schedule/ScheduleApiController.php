@@ -7,8 +7,8 @@ use App\Models\Classes\GroupClass;
 use App\Models\Classes\LessonClass;
 use App\Models\Group;
 use App\Models\Lesson;
+use App\Models\LessonAddiction;
 use App\Models\Student;
-use http\Env\Response;
 use Illuminate\Http\Request;
 
 class ScheduleApiController extends Controller
@@ -126,6 +126,26 @@ class ScheduleApiController extends Controller
         ]);
     }
 
+    public function updateLessonAddictions(Request $request){
+        if ($request->isMethod('post')) {
+            $date = date(mktime(0,0,0,
+                $request->input('month'),
+                $request->input('day'),
+                $request->input('year')));
+            LessonAddiction::insert([
+                [
+                    'date' => $date,
+                    'text' => $request->input('text')
+                ]
+            ]);
+        }
+        else {
+            $array = [
+                'error' => 'Ошибка, поддерживается только POST-метод'
+            ];
+        }
+    }
+
     // MY
 
     public function MYday(Request $request)
@@ -149,7 +169,7 @@ class ScheduleApiController extends Controller
             $today = mktime(0, 0, 0, $month, $day, $year);
             $weekDay = date('w', $today);
 
-            $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $access->group_id)->where('up_week', $this->week())->orderBy('lesson_number')->get();
+            $lessonsDB = Lesson::where("week_day", $weekDay)->where('group_id', $access->group_id)->where('up_week', $this->upWeek($today))->orderBy('lesson_number')->get();
             $lessons = [];
 
             foreach ($lessonsDB as $lesson)
@@ -295,11 +315,8 @@ class ScheduleApiController extends Controller
         }
     }
 
-    private function upWeek($datetime = null)
+    private function upWeek(int $datetime)
     {
-        if ($datetime === null){
-            $datetime = (new \DateTime())->getTimestamp();
-        }
         return (int)date('W', $datetime) % 2 == env("UP_WEEK");
     }
 }
