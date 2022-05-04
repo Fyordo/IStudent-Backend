@@ -143,7 +143,7 @@ class ScheduleApiController extends Controller
 
             $access = Student::where("token", $token)->first();
             if (isset($access)) {
-                if ($access->isHeadman) {
+                if ($access->is_headman) {
                     $date = mktime(
                         $request->input('hour'),
                         $request->input('minutes'),
