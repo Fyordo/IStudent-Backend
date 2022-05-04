@@ -143,32 +143,42 @@ class ScheduleApiController extends Controller
 
             $access = Student::where("token", $token)->first();
             if (isset($access)) {
-                $date = mktime(
-                    $request->input('hour'),
-                    $request->input('minutes'),
-                    0,
-                    $request->input('month'),
-                    $request->input('day'),
-                    $request->input('year'));
-                $dt = new DateTime();
-                $dt->setTimestamp($date);
-                LessonAddiction::insert([
-                    [
-                        'group_id' => $access->group_id,
-                        'date' => $dt,
-                        'description' => $request->input('text')
-                    ]
-                ]);
+                if ($access->isHeadman) {
+                    $date = mktime(
+                        $request->input('hour'),
+                        $request->input('minutes'),
+                        0,
+                        $request->input('month'),
+                        $request->input('day'),
+                        $request->input('year'));
+                    $dt = new DateTime();
+                    $dt->setTimestamp($date);
+                    LessonAddiction::insert([
+                        [
+                            'group_id' => $access->group_id,
+                            'date' => $dt,
+                            'description' => $request->input('text')
+                        ]
+                    ]);
+                    $array = [
+                        'status' => 'Дополнение успешно сохранено'
+                    ];
+                }
+                else {
+                    $array = [
+                        'status' => 'Вы не староста'
+                    ];
+                }
             }
             else {
                 $array = [
-                    'error' => 'Неверный токен'
+                    'status' => 'Неверный токен'
                 ];
             }
         }
         else {
             $array = [
-                'error' => 'Ошибка, поддерживается только POST-метод'
+                'status' => 'Ошибка, поддерживается только POST-метод'
             ];
         }
     }
