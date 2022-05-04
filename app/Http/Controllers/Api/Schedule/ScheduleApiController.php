@@ -7,6 +7,7 @@ use App\Models\Classes\GroupClass;
 use App\Models\Classes\LessonClass;
 use App\Models\Group;
 use App\Models\Lesson;
+use App\Models\LessonAddiction;
 use App\Models\Student;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -124,6 +125,26 @@ class ScheduleApiController extends Controller
         return response()->json([
             'type' => (int)date('W') % 2 == env("UP_WEEK") ? "up" : "down"
         ]);
+    }
+
+    public function updateLessonAddictions(Request $request){
+        if ($request->isMethod('post')) {
+            $date = date(mktime(0,0,0,
+                $request->input('month'),
+                $request->input('day'),
+                $request->input('year')));
+            LessonAddiction::insert([
+                [
+                    'date' => $date,
+                    'text' => $request->input('text')
+                ]
+            ]);
+        }
+        else {
+            $array = [
+                'error' => 'Ошибка, поддерживается только POST-метод'
+            ];
+        }
     }
 
     // MY
