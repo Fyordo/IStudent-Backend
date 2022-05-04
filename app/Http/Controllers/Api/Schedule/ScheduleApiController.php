@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Models\Lesson;
 use App\Models\LessonAddiction;
 use App\Models\Student;
+use DateTime;
 use Illuminate\Http\Request;
 
 class ScheduleApiController extends Controller
@@ -142,17 +143,19 @@ class ScheduleApiController extends Controller
 
             $access = Student::where("token", $token)->first();
             if (isset($access)) {
-                $date = date(mktime(
+                $date = mktime(
                     $request->input('hour'),
                     $request->input('minutes'),
                     0,
                     $request->input('month'),
                     $request->input('day'),
-                    $request->input('year')));
+                    $request->input('year'));
+                $dt = new DateTime();
+                $dt->setTimestamp($date);
                 LessonAddiction::insert([
                     [
                         'group_id' => $access->group_id,
-                        'date' => $date,
+                        'date' => $dt,
                         'description' => $request->input('text')
                     ]
                 ]);
