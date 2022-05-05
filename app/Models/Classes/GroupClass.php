@@ -8,7 +8,7 @@ class GroupClass
 {
     public int $id;
     public int $group_number;
-    public int $group_course;
+    public string $group_course;
     public int $headman_id;
     public DirectionClass $direction;
 
@@ -37,7 +37,7 @@ class GroupClass
 
         foreach ($students as $student)
         {
-            array_push($arr, new StudentClass($student));
+            $arr[] = new StudentClass($student);
         }
 
         return $arr;
