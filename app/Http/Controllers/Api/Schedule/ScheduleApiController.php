@@ -146,11 +146,24 @@ class ScheduleApiController extends Controller
             $access = Student::where("token", $token)->first();
             if (isset($access)) {
                 if ($access->is_headman) {
-                    if (LessonAddiction::where('group_id', $access->group_id)->first() !== null) {
-                        LessonAddiction::where('id', '==', $id)->delete();
+                    $lesson_addiction = LessonAddiction::where('id', $id)->first();
+                    if ($lesson_addiction == null){
                         $array = [
-                            'status' => 'Дополнение успешно удалено'
+                            'status' => 'Указан неверный ID'
                         ];
+                    }
+                    else{
+                        if ($lesson_addiction->group_id == $access->group_id) {
+                            $lesson_addiction->delete();
+                            $array = [
+                                'status' => 'Дополнение успешно удалено!'
+                            ];
+                        }
+                        else{
+                            $array = [
+                                'status' => 'Нет доступа к чужим группам'
+                            ];
+                        }
                     }
                 }
                 else {
@@ -337,58 +350,6 @@ class ScheduleApiController extends Controller
         }
 
 
-    }
-    public function MY3and3(Request $request)
-    {
-
-        $token = $request->header("token");
-        if ($token == "")
-        {
-            $array = [
-                'error' => 'Ошибка доступа'
-            ];
-            return response()->json($array, 405);
-        }
-
-        $access = Student::where("token", $token)->first();
-        if (isset($access))
-        {
-            $day = $request->input("day");
-            $month = $request->input("month");
-            $year = $request->input("year");
-
-            $today = mktime(0, 0, 0, $month, $day, $year);
-            $weekDay = date('w', $today);
-
-            $listDB = Lesson::where('group_id', $access->group_id)->select('title')->get()->toArray();
-            dd($listDB);
-            $list = [];
-
-            foreach ($listDB as $item) {
-                if (!in_array($item['title'], $list)){
-                    $list[] = $item["title"];
-                }
-            }
-
-            foreach ($list as $item) {
-                dd(Lesson::where('title', $item)->where('group_id', $access->group_id)->get()->toArray());
-            }
-
-            dd($list);
-
-            return response()->json([
-                'list' => $list,
-                'lessons' => $lessons
-            ]);
-
-        }
-        else
-        {
-            $array = [
-                'error' => 'Ошибка доступа или неверный токен'
-            ];
-            return response()->json($array, 405);
-        }
     }
 
     // РАБОТАЕТ С БОЖЬЕЙ ПОМОЩЬЮ, НЕ ТРОГАТЬ!!!
