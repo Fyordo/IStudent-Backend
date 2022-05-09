@@ -161,6 +161,7 @@ Route::group(
                         Route::post('/full', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYfull']);
                         Route::post('/all', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYall']);
                         Route::post('/addiction', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYupdateLessonAddictions']);
+                        Route::post('/addiction/delete/{id}', [\App\Http\Controllers\Api\Schedule\ScheduleApiController::class, 'MYdeleteAddiction']);
 
                     }
                 );
