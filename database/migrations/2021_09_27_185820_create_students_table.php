@@ -20,7 +20,6 @@ class CreateStudentsTable extends Migration
             $table->string("password");
             $table->integer("group_id");
             $table->boolean("is_headman");
-            $table->boolean("is_headman");
             $table->text("remember_token");
         });
     }

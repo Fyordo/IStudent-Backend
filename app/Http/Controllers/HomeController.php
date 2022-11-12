@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classes\DirectionClass;
-use App\Models\Classes\GroupClass;
 use App\Models\Classes\StudentClass;
-use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller

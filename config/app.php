@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Facades\DirectionManager;
+
 return [
 
     /*
@@ -175,6 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // Custom Providers
+
     ],
 
     /*
@@ -228,6 +232,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'DirectionManager' => DirectionManager::class
 
     ],
 

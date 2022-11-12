@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Facades\DirectionManager;
 use App\Models\Classes\StudentClass;
+use App\Models\Direction;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

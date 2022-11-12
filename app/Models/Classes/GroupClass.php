@@ -2,6 +2,7 @@
 
 namespace App\Models\Classes;
 
+use App\Models\Direction;
 use App\Models\Student;
 
 class GroupClass
@@ -10,14 +11,14 @@ class GroupClass
     public int $group_number;
     public string $group_course;
     public int $headman_id;
-    public DirectionClass $direction;
+    public Direction $direction;
 
     public function __construct($arr){
         $this->id = $arr['id'];
         $this->group_number = $arr['group_number'];
         $this->group_course = $arr['group_course'];
         $this->headman_id = $arr['headman_id'] ?? -1;
-        $this->direction = DirectionClass::findById($arr['direction_id']);
+        $this->direction = Direction::find($arr['direction_id']);
     }
 
     public function hasHeadman() : bool

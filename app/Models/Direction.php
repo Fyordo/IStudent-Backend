@@ -4,7 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property int $id
+ * @property string $code
+ * @property string $title
+ */
 class Direction extends Model
 {
     /**
@@ -21,9 +27,8 @@ class Direction extends Model
         'title'
     ];
 
-    protected $visible = [
-        'id',
-        'code',
-        'title'
-    ];
+    public function groups(): HasMany
+    {
+        return $this->hasMany(Group::class, 'direction_id', 'id');
+    }
 }

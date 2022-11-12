@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Providers\CustomProviders\DirectionServiceProvider;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(DirectionServiceProvider::class);
     }
 
     /**
