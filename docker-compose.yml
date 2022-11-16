@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+    nginx:
+        image: nginx:latest
+        container_name: istudent-nginx
+        volumes:
+            - ./:/var/www/
+            - ./.docker/nginx/conf.d:/etc/nginx/conf.d/
+        ports:
+            - 8098:80
+    php:
+        image: php:8.0-fpm
+        container_name: istudent-php
+        volumes:
+            -   ./:/var/www
