@@ -7,3 +7,6 @@ up:
 
 down:
 	docker-compose down
+
+console:
+	docker exec -it istudent-php bash
