@@ -1,16 +1,33 @@
 version: "3.3"
 
 services:
-    nginx:
+    server:
         image: nginx:latest
         container_name: istudent-nginx
         volumes:
-            - ./:/var/www/
+            - ./:/var/www
             - ./.docker/nginx/conf.d:/etc/nginx/conf.d/
         ports:
-            - 8098:80
-    php:
-        image: php:8.0-fpm
+            - 8099:80
+    app:
+        image: laravel/docker
         container_name: istudent-php
+        build:
+            context: .
+            dockerfile: .docker/php_composer/Dockerfile
         volumes:
             -   ./:/var/www
+        depends_on:
+            - db
+    db:
+        image: postgres
+        restart: always
+        container_name: istudent-db
+        ports:
+            - ${OUTER_DB_PORT}:${DB_PORT}
+        environment:
+            - POSTGRES_DB=${DB_DATABASE}
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+        volumes:
+            - ./docker/postgres/datadir:/var/lib/postgresql/data
